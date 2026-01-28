@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <何嘉诚>Portfolio | AIGC & Visual Art</title>
+    <title>Tjugofem Portfolio | AIGC & Visual Art</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -132,6 +132,16 @@
             visibility: visible;
         }
 
+        /* 子分类标签 */
+        .subcategory-tag {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
         /* 移动端优化 */
         @media (max-width: 768px) {
             .project-card {
@@ -158,7 +168,7 @@
 
     <!-- 加载动画 -->
     <div id="loadingScreen" class="loading-screen">
-        <div class="loading-text">LOADING</div>
+        <div class="loading-text">TJUGOFEM</div>
     </div>
 
     <!-- 电影质感颗粒感蒙版 -->
@@ -167,7 +177,7 @@
 
     <!-- 导航栏 -->
     <nav id="mainNav" class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-40 bg-gradient-to-b from-black/50 to-transparent transition-all duration-300">
-        <div class="text-sm tracking-[0.3em] font-bold art-title uppercase italic text-blue-400">Cinematic Portfolio</div>
+        <div class="text-sm tracking-[0.3em] font-bold art-title uppercase italic text-blue-400">Tjugofem</div>
         <div class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.2em] font-light">
             <a href="#work" class="hover:text-blue-400 transition">Works</a>
             <a href="#about" class="hover:text-blue-400 transition">About</a>
@@ -195,9 +205,8 @@
             <div class="pt-8 border-t border-white/10">
                 <p class="text-sm text-slate-400 mb-4">Connect</p>
                 <div class="flex space-x-4">
-                    <a href="#" class="hover:text-blue-400"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="hover:text-blue-400"><i class="fab fa-behance"></i></a>
-                    <a href="#" class="hover:text-blue-400"><i class="fab fa-vimeo-v"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-weixin"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
@@ -206,14 +215,15 @@
     <!-- 主视觉区域 -->
     <section class="relative h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
         <div class="z-10 text-center">
-            <h2 class="text-blue-500 text-xs tracking-[0.6em] uppercase mb-6 opacity-60">Visual Director & TVC Artist</h2>
+            <h2 class="text-blue-500 text-xs tracking-[0.6em] uppercase mb-6 opacity-60">AIGC & Visual Art Director</h2>
             <h1 class="art-title text-6xl md:text-9xl mb-8 leading-tight">
-                何嘉诚<span class="italic font-light">作品集</span><br>
-                <span class="text-blue-400">BLUE</span> VIBES.
+                Tjugofem<span class="italic font-light">Portfolio</span><br>
+                <span class="text-blue-400">AI</span> VISUAL.
             </h1>
             <div class="w-20 h-[1px] bg-blue-500/50 mx-auto"></div>
+            <p class="text-slate-400 text-sm mt-6 max-w-xl mx-auto">擅长多风格AI创意叙事，实时跟进内容生成方向商业化可行性，国内外平台使用人机协同</p>
         </div>
-        <div class="absolute bottom-10 left-10 text-[10rem] font-bold opacity-[0.02] select-none pointer-events-none art-title hidden md:block">CREATIVE</div>
+        <div class="absolute bottom-10 left-10 text-[10rem] font-bold opacity-[0.02] select-none pointer-events-none art-title hidden md:block">AIGC</div>
         <!-- 滚动指示器 -->
         <div class="absolute bottom-8 right-8 animate-bounce">
             <div class="w-6 h-10 border-2 border-blue-400/50 rounded-full flex justify-center">
@@ -226,21 +236,20 @@
     <main id="work" class="max-w-7xl mx-auto px-6 py-32 space-y-32">
         <!-- 作品分类筛选 -->
         <div class="filter-buttons flex justify-center space-x-4 mb-12">
-            <button class="filter-btn active px-4 py-2 text-xs tracking-widest border border-blue-500/30 hover:bg-blue-500/10 transition" data-filter="all">All</button>
-            <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="tvc">TVC</button>
-            <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="visual">Visual Art</button>
-            <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="experimental">Experimental</button>
+            <button class="filter-btn active px-4 py-2 text-xs tracking-widest border border-blue-500/30 hover:bg-blue-500/10 transition" data-filter="all">全部</button>
+            <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="media">报业试听作品</button>
+            <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="vtt">VTT商业化作品</button>
         </div>
         
-        <!-- 项目1：个人作品 -->
-        <div class="project-item space-y-6" data-category="tvc">
+        <!-- 项目1：深报试听作品 -->
+        <div class="project-item space-y-6" data-category="media">
             <div class="flex justify-between items-end">
                 <span class="text-4xl art-title italic text-blue-900/40">01</span>
-                <span class="text-xs tracking-widest text-slate-500 uppercase">Commercial Film / 2026</span>
+                <span class="text-xs tracking-widest text-slate-500 uppercase">深圳报业集团 / 2024</span>
             </div>
-            <div class="project-card group cursor-pointer" data-video-id="future-horizon">
+            <div class="project-card group cursor-pointer" data-video-id="shenzhen-media">
                 <img src="https://images.unsplash.com/photo-1489599809516-9827b6d1cf13?auto=format&fit=crop&w=1600&q=80" 
-                     alt="Future Horizon TVC" 
+                     alt="深报试听作品" 
                      class="transition-all duration-700 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
                 <div class="absolute inset-0 z-20 flex items-center justify-center">
@@ -249,83 +258,143 @@
                     </button>
                 </div>
                 <div class="absolute bottom-8 left-8">
-                    <h3 class="text-3xl art-title mb-2">深圳报业集团作品 / Future Horizon</h3>
-                    <p class="text-blue-300/80 text-sm font-light">为文旅、政务类宣传视频</p>
+                    <h3 class="text-3xl art-title mb-2">深报试听作品集</h3>
+                    <p class="text-blue-300/80 text-sm font-light">文旅、政务类宣传视频制作，结合深圳城市文化与政务宣传需求</p>
                     <div class="flex items-center mt-4 space-x-4 text-xs tracking-widest">
-                        <span class="px-3 py-1 border border-blue-500/30">4K</span>
-                        <span class="px-3 py-1 border border-blue-500/30">60fps</span>
-                        <span class="px-3 py-1 border border-blue-500/30">Dolby Atmos</span>
+                        <span class="px-3 py-1 border border-blue-500/30">AI脚本创作</span>
+                        <span class="px-3 py-1 border border-blue-500/30">分镜内容生成</span>
+                        <span class="px-3 py-1 border border-blue-500/30">Sora2成片</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 项目2-3：电商产品、痛点展示 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- 项目2 -->
-            <div class="project-item space-y-6" data-category="visual">
+        <!-- VTT商业化作品分类 -->
+        <div class="project-item space-y-6" data-category="vtt">
+            <div class="flex justify-between items-end">
                 <span class="text-4xl art-title italic text-blue-900/40">02</span>
-                <div class="project-card !aspect-square group cursor-pointer" data-video-id="light-experiment">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80" 
-                         alt="光影实验 1.0" 
-                         class="transition-all duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
-                    <div class="absolute inset-0 z-20 flex items-center justify-center">
-                        <button class="play-btn w-12 h-12 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
-                            <div class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
-                        </button>
+                <span class="text-xs tracking-widest text-slate-500 uppercase">VTT商业化作品集 / 2024</span>
+            </div>
+            
+            <!-- VTT子分类导航 -->
+            <div class="flex space-x-4 mb-6">
+                <button class="vtt-subfilter active px-3 py-1 text-xs tracking-widest border border-blue-500/30 hover:bg-blue-500/10 transition" data-subfilter="all">全部</button>
+                <button class="vtt-subfilter px-3 py-1 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-subfilter="product">产品展示</button>
+                <button class="vtt-subfilter px-3 py-1 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-subfilter="painpoint">痛点可视化</button>
+                <button class="vtt-subfilter px-3 py-1 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-subfilter="commercial">商业成片</button>
+            </div>
+            
+            <!-- VTT产品展示 -->
+            <div class="vtt-project space-y-12" data-subcategory="product">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="project-card group cursor-pointer" data-video-id="vtt-product-1">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" 
+                             alt="VTT电商产品展示" 
+                             class="transition-all duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                        <div class="absolute inset-0 z-20 flex items-center justify-center">
+                            <button class="play-btn w-12 h-12 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                                <div class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-xl art-title mb-1">产品展示视频</h3>
+                            <p class="text-blue-300/80 text-xs font-light">AI生成产品功能演示与卖点突出</p>
+                            <div class="flex items-center mt-2 space-x-2">
+                                <span class="subcategory-tag">产品展示</span>
+                                <span class="subcategory-tag">Gemini 3</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="absolute bottom-6 left-6">
-                        <h3 class="text-xl art-title mb-1">光影实验 1.0</h3>
-                        <p class="text-blue-300/80 text-xs font-light">动态光效与粒子系统</p>
+                    
+                    <div class="project-card group cursor-pointer" data-video-id="vtt-product-2">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" 
+                             alt="VTT产品功能可视化" 
+                             class="transition-all duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                        <div class="absolute inset-0 z-20 flex items-center justify-center">
+                            <button class="play-btn w-12 h-12 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                                <div class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-xl art-title mb-1">产品功能可视化</h3>
+                            <p class="text-blue-300/80 text-xs font-light">动态展示产品核心功能与使用场景</p>
+                            <div class="flex items-center mt-2 space-x-2">
+                                <span class="subcategory-tag">产品展示</span>
+                                <span class="subcategory-tag">Runway</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- 项目3 -->
-            <div class="project-item space-y-6 md:mt-24" data-category="experimental">
-                <span class="text-4xl art-title italic text-blue-900/40">03</span>
-                <div class="project-card !aspect-square group cursor-pointer" data-video-id="textures">
-                    <img src="https://images.unsplash.com/photo-1550686041-366ad85a1355?auto=format&fit=crop&w=800&q=80" 
-                         alt="质感碎片 / Textures" 
+            <!-- VTT痛点可视化 -->
+            <div class="vtt-project space-y-12 mt-12" data-subcategory="painpoint">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="project-card group cursor-pointer" data-video-id="vtt-painpoint-1">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" 
+                             alt="用户痛点可视化" 
+                             class="transition-all duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                        <div class="absolute inset-0 z-20 flex items-center justify-center">
+                            <button class="play-btn w-12 h-12 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                                <div class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-xl art-title mb-1">用户痛点可视化</h3>
+                            <p class="text-blue-300/80 text-xs font-light">问题呈现与解决方案展示</p>
+                            <div class="flex items-center mt-2 space-x-2">
+                                <span class="subcategory-tag">痛点可视化</span>
+                                <span class="subcategory-tag">Veo 3</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card group cursor-pointer" data-video-id="vtt-painpoint-2">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" 
+                             alt="场景痛点还原" 
+                             class="transition-all duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                        <div class="absolute inset-0 z-20 flex items-center justify-center">
+                            <button class="play-btn w-12 h-12 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                                <div class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-xl art-title mb-1">场景痛点还原</h3>
+                            <p class="text-blue-300/80 text-xs font-light">真实场景下的问题模拟与解决</p>
+                            <div class="flex items-center mt-2 space-x-2">
+                                <span class="subcategory-tag">痛点可视化</span>
+                                <span class="subcategory-tag">Higgsfield</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- VTT商业成片 -->
+            <div class="vtt-project space-y-12 mt-12" data-subcategory="commercial">
+                <div class="project-card group cursor-pointer" data-video-id="vtt-commercial">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80" 
+                         alt="VTT商业成片" 
                          class="transition-all duration-700 group-hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
                     <div class="absolute inset-0 z-20 flex items-center justify-center">
-                        <button class="play-btn w-12 h-12 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
-                            <div class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+                        <button class="play-btn w-16 h-16 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                            <div class="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
                         </button>
                     </div>
-                    <div class="absolute bottom-6 left-6">
-                        <h3 class="text-xl art-title mb-1">质感碎片 / Textures</h3>
-                        <p class="text-blue-300/80 text-xs font-light">材料研究与表面处理</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 项目4：电商AI成片 -->
-        <div class="project-item space-y-6" data-category="tvc">
-            <div class="flex justify-between items-end">
-                <span class="text-4xl art-title italic text-blue-900/40">04</span>
-                <span class="text-xs tracking-widest text-slate-500 uppercase">Automotive Film / 2025</span>
-            </div>
-            <div class="project-card group cursor-pointer" data-video-id="velocity">
-                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1600&q=80" 
-                     alt="Velocity - Automotive Film" 
-                     class="transition-all duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
-                <div class="absolute inset-0 z-20 flex items-center justify-center">
-                    <button class="play-btn w-16 h-16 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
-                        <div class="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
-                    </button>
-                </div>
-                <div class="absolute bottom-8 left-8">
-                    <h3 class="text-3xl art-title mb-2">速度与光 / Velocity</h3>
-                    <p class="text-blue-300/80 text-sm font-light">汽车品牌视觉广告，动态追踪摄影</p>
-                    <div class="flex items-center mt-4 space-x-4 text-xs tracking-widest">
-                        <span class="px-3 py-1 border border-blue-500/30">6K</span>
-                        <span class="px-3 py-1 border border-blue-500/30">120fps</span>
-                        <span class="px-3 py-1 border border-blue-500/30">Drone Shot</span>
+                    <div class="absolute bottom-8 left-8">
+                        <h3 class="text-3xl art-title mb-2">VTT商业成片</h3>
+                        <p class="text-blue-300/80 text-sm font-light">结合AIGC技术的商业化视频创作，提升制作效率与创意表现</p>
+                        <div class="flex items-center mt-4 space-x-4 text-xs tracking-widest">
+                            <span class="px-3 py-1 border border-blue-500/30">Sora2</span>
+                            <span class="px-3 py-1 border border-blue-500/30">ComfyUI</span>
+                            <span class="px-3 py-1 border border-blue-500/30">Vidu</span>
+                            <span class="px-3 py-1 border border-blue-500/30">MiniMax</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -335,25 +404,39 @@
     <!-- 关于/联系区域 -->
     <footer id="about" class="bg-black/20 border-t border-white/5 py-32 px-6 text-center">
         <div class="max-w-3xl mx-auto">
-            <p class="text-blue-500 text-xs tracking-[0.4em] uppercase mb-8">Ready to collaborate?</p>
-            <h2 id="contact" class="art-title text-4xl md:text-6xl mb-16 hover:text-blue-400 transition-colors cursor-pointer" onclick="window.location.href='mailto:hello@yourname.com'">hello@yourname.com</h2>
+            <p class="text-blue-500 text-xs tracking-[0.4em] uppercase mb-8">期待合作</p>
+            <h2 id="contact" class="art-title text-4xl md:text-6xl mb-8 hover:text-blue-400 transition-colors cursor-pointer" onclick="window.location.href='mailto:he22273261@126.com'">he22273261@126.com</h2>
+            <p class="text-slate-400 mb-12">微信: he_2469855154</p>
+            
             <div class="flex justify-center space-x-8 text-[10px] tracking-[0.2em] text-slate-500 uppercase mb-12">
-                <a href="#" class="hover:text-white transition flex items-center space-x-1">
-                    <i class="fab fa-instagram text-xs"></i>
-                    <span>Instagram</span>
+                <a href="mailto:he22273261@126.com" class="hover:text-white transition flex items-center space-x-1">
+                    <i class="fas fa-envelope text-xs"></i>
+                    <span>Email</span>
                 </a>
                 <a href="#" class="hover:text-white transition flex items-center space-x-1">
-                    <i class="fab fa-behance text-xs"></i>
-                    <span>Behance</span>
-                </a>
-                <a href="#" class="hover:text-white transition flex items-center space-x-1">
-                    <i class="fab fa-vimeo-v text-xs"></i>
-                    <span>Vimeo</span>
+                    <i class="fab fa-weixin text-xs"></i>
+                    <span>微信</span>
                 </a>
             </div>
-            <p class="text-slate-500 text-sm max-w-md mx-auto mt-12">
-                专注于AIGC影视广告与视觉艺术创作，结合电影美学与数字技术，打造独特的视觉叙事。
+            
+            <p class="text-slate-500 text-sm max-w-2xl mx-auto mt-12 mb-8">
+                擅长多风格AI创意叙事，实时跟进内容生成方向商业化可行性，国内外平台使用人机协同。专注于AIGC影视广告与视觉艺术创作，结合电影美学与数字技术，打造独特的视觉叙事。
             </p>
+            
+            <div class="mt-8 flex flex-wrap justify-center gap-3">
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">AI脚本创作</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">分镜内容生成</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Sora2成片</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">ComfyUI</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Gemini 3</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Veo 3</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Runway</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Higgsfield</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">PixVerse</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Grok</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Vidu</span>
+                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">MiniMax</span>
+            </div>
         </div>
     </footer>
 
@@ -361,12 +444,12 @@
     <div id="videoModal" class="video-modal fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4">
         <div class="relative w-full max-w-6xl aspect-video">
             <button id="closeModal" class="absolute -top-12 right-0 text-white/60 hover:text-white text-xl transition">
-                <i class="fas fa-times"></i> Close
+                <i class="fas fa-times"></i> 关闭
             </button>
             <div class="w-full h-full bg-gray-900 flex items-center justify-center">
                 <div class="text-center p-8">
                     <i class="fas fa-play-circle text-6xl text-blue-400 mb-4"></i>
-                    <h3 class="text-2xl art-title mb-2" id="videoTitle">Video Preview</h3>
+                    <h3 class="text-2xl art-title mb-2" id="videoTitle">视频预览</h3>
                     <p class="text-slate-400 mb-6">在实际项目中，这里将嵌入视频播放器</p>
                     <p class="text-sm text-slate-500">您可以选择使用 YouTube、Vimeo 或自托管视频</p>
                 </div>
@@ -376,7 +459,7 @@
 
     <!-- 版权信息 -->
     <div class="text-center text-xs text-slate-600 pb-8">
-        &copy; 2026 Cinematic Portfolio. All rights reserved.
+        &copy; 2024 Tjugofem Portfolio. All rights reserved.
     </div>
 
     <script>
@@ -484,6 +567,38 @@
             });
         });
 
+        // VTT子分类筛选功能
+        document.querySelectorAll('.vtt-subfilter').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 更新激活状态
+                document.querySelectorAll('.vtt-subfilter').forEach(b => b.classList.remove('active', 'border-blue-500/30'));
+                document.querySelectorAll('.vtt-subfilter').forEach(b => b.classList.add('border-white/10'));
+                this.classList.add('active', 'border-blue-500/30');
+                this.classList.remove('border-white/10');
+                
+                const subfilter = this.getAttribute('data-subfilter');
+                
+                // 筛选VTT子项目
+                document.querySelectorAll('.vtt-project').forEach(item => {
+                    if (subfilter === 'all' || item.getAttribute('data-subcategory') === subfilter) {
+                        gsap.to(item, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.5,
+                            display: 'block'
+                        });
+                    } else {
+                        gsap.to(item, {
+                            opacity: 0,
+                            scale: 0.8,
+                            duration: 0.5,
+                            display: 'none'
+                        });
+                    }
+                });
+            });
+        });
+
         // 视频模态框控制
         const videoModal = document.getElementById('videoModal');
         const closeModalBtn = document.getElementById('closeModal');
@@ -497,13 +612,15 @@
                     
                     // 根据视频ID设置标题
                     const titles = {
-                        'future-horizon': '何嘉诚作品集 / Future Horizon',
-                        'light-experiment': '光影实验 1.0',
-                        'textures': '质感碎片 / Textures',
-                        'velocity': '速度与光 / Velocity'
+                        'shenzhen-media': '深报试听作品集',
+                        'vtt-product-1': 'VTT产品展示视频',
+                        'vtt-product-2': 'VTT产品功能可视化',
+                        'vtt-painpoint-1': '用户痛点可视化',
+                        'vtt-painpoint-2': '场景痛点还原',
+                        'vtt-commercial': 'VTT商业成片'
                     };
                     
-                    videoTitle.textContent = titles[videoId] || 'Video Preview';
+                    videoTitle.textContent = titles[videoId] || '视频预览';
                     videoModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 }

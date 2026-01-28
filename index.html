@@ -43,7 +43,7 @@
             to { transform: translate(20%, 20%); }
         }
 
-        /* 作品卡片悬停效果 */
+        /* 作品卡片悬停效果 - 主要横屏卡片 */
         .project-card {
             position: relative; overflow: hidden;
             aspect-ratio: 21 / 9; background: #0f172a;
@@ -116,7 +116,9 @@
             opacity: 0;
         }
         
-        .project-card:hover .play-btn {
+        .project-card:hover .play-btn,
+        .small-project-card:hover .play-btn,
+        .vertical-card:hover .play-btn {
             opacity: 1;
         }
 
@@ -158,7 +160,7 @@
             letter-spacing: 0.1em;
         }
 
-        /* 小型项目卡片 */
+        /* 小型项目卡片 - 横屏 */
         .small-project-card {
             position: relative; overflow: hidden;
             aspect-ratio: 16 / 9; background: #0f172a;
@@ -178,10 +180,54 @@
         
         .small-project-card:hover img { opacity: 0.4; transform: scale(1.05); }
 
+        /* 竖屏卡片 - VTT作品使用 */
+        .vertical-card {
+            position: relative; overflow: hidden;
+            aspect-ratio: 9 / 16; background: #0f172a;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .vertical-card:hover {
+            border-color: var(--electric-blue);
+            transform: translateY(-5px);
+        }
+        
+        .vertical-card img {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.7; transition: 0.6s;
+        }
+        
+        .vertical-card:hover img { opacity: 0.4; transform: scale(1.05); }
+
+        /* 时间线样式 */
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--electric-blue);
+            border-radius: 50%;
+            position: absolute;
+            left: -6px;
+            top: 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, rgba(56, 189, 248, 0.3), rgba(56, 189, 248, 0.1));
+        }
+
         /* 移动端优化 */
         @media (max-width: 768px) {
             .project-card {
                 aspect-ratio: 16/9 !important;
+            }
+            
+            .vertical-card {
+                aspect-ratio: 9/12 !important;
             }
             
             h1 {
@@ -278,11 +324,28 @@
             <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="vtt">VTT商业化作品</button>
         </div>
         
-        <!-- 深报视听作品集 -->
+        <!-- 时间线展示 -->
+        <div class="relative mb-20 ml-4">
+            <div class="timeline-line"></div>
+            <div class="mb-16 relative pl-10">
+                <div class="timeline-dot"></div>
+                <span class="text-blue-500 text-sm tracking-widest uppercase">2024</span>
+                <h3 class="text-2xl art-title mt-2 mb-4">报业视听作品</h3>
+                <p class="text-slate-400 text-sm max-w-2xl">深圳报业集团系列作品，文旅政务宣传片创作</p>
+            </div>
+            <div class="relative pl-10">
+                <div class="timeline-dot"></div>
+                <span class="text-blue-500 text-sm tracking-widest uppercase">2026</span>
+                <h3 class="text-2xl art-title mt-2 mb-4">VTT商业化作品</h3>
+                <p class="text-slate-400 text-sm max-w-2xl">AIGC商业化应用，多系列视频内容创作</p>
+            </div>
+        </div>
+        
+        <!-- 深报视听作品集 - 保持横屏 -->
         <div class="project-item space-y-6" data-category="media">
             <div class="flex justify-between items-end">
                 <span class="text-4xl art-title italic text-blue-900/40">01</span>
-                <span class="text-xs tracking-widest text-slate-500 uppercase">深圳报业集团作品 / 2025</span>
+                <span class="text-xs tracking-widest text-slate-500 uppercase">深圳报业集团作品 / 2024</span>
             </div>
             
             <!-- 主要作品：泱泱中华 珠水悠悠 -->
@@ -307,7 +370,7 @@
                 </div>
             </div>
             
-            <!-- 其他深报作品网格展示 -->
+            <!-- 其他深报作品网格展示 - 保持横屏 -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
                 <!-- 智慧停车 -->
                 <div class="small-project-card group cursor-pointer" data-video-id="smart-parking">
@@ -416,41 +479,41 @@
             </div>
         </div>
 
-        <!-- VTT商业化作品集 -->
+        <!-- VTT商业化作品集 - 大部分改为9:16竖屏 -->
         <div class="project-item space-y-6" data-category="vtt">
             <div class="flex justify-between items-end">
                 <span class="text-4xl art-title italic text-blue-900/40">02</span>
-                <span class="text-xs tracking-widest text-slate-500 uppercase">VTT商业化作品集 / 2027</span>
+                <span class="text-xs tracking-widest text-slate-500 uppercase">VTT商业化作品集 / 2026</span>
             </div>
             
             <!-- VTT系列作品展示 -->
             <div class="space-y-12">
-                <!-- Sora2系列视频 -->
+                <!-- Sora2系列视频 - 竖屏 -->
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">Sora2系列视频</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="project-card group cursor-pointer" data-video-id="sora2-series-1">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80" 
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="vertical-card group cursor-pointer" data-video-id="sora2-series-1">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
                                  alt="Sora2系列视频" 
-                                 class="transition-all duration-700 group-hover:scale-105">
+                                 class="transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
                             <div class="absolute inset-0 z-20 flex items-center justify-center">
-                                <button class="play-btn w-16 h-16 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
-                                    <div class="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
+                                <button class="play-btn w-10 h-10 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                                    <div class="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
                                 </button>
                             </div>
-                            <div class="absolute bottom-8 left-8">
-                                <h3 class="text-2xl art-title mb-2">Sora2创意叙事</h3>
-                                <p class="text-blue-300/80 text-sm font-light">基于Sora2的创意视频系列，展现AI视频生成能力</p>
-                                <div class="flex items-center mt-4 space-x-4 text-xs tracking-widest">
-                                    <span class="px-3 py-1 border border-blue-500/30">Sora2生成</span>
-                                    <span class="px-3 py-1 border border-blue-500/30">创意叙事</span>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-lg art-title mb-1">Sora2创意叙事</h3>
+                                <p class="text-blue-300/80 text-xs font-light">基于Sora2的创意视频系列</p>
+                                <div class="flex items-center mt-2 space-x-2">
+                                    <span class="subcategory-tag">Sora2生成</span>
+                                    <span class="subcategory-tag">创意叙事</span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="small-project-card group cursor-pointer" data-video-id="sora2-series-2">
-                            <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=800&q=80" 
+                        <div class="vertical-card group cursor-pointer" data-video-id="sora2-series-2">
+                            <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=600&q=80" 
                                  alt="Sora2商业应用" 
                                  class="transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
@@ -461,22 +524,44 @@
                             </div>
                             <div class="absolute bottom-4 left-4 right-4">
                                 <h3 class="text-lg art-title mb-1">Sora2商业应用</h3>
-                                <p class="text-blue-300/80 text-xs font-light">企业级Sora2视频解决方案展示</p>
+                                <p class="text-blue-300/80 text-xs font-light">企业级Sora2视频解决方案</p>
                                 <div class="flex items-center mt-2 space-x-2">
                                     <span class="subcategory-tag">企业应用</span>
                                     <span class="subcategory-tag">解决方案</span>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="vertical-card group cursor-pointer" data-video-id="sora2-series-3">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Sora2场景生成" 
+                                 class="transition-all duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-lg art-title mb-1">Sora2场景生成</h3>
+                                <p class="text-blue-300/80 text-xs font-light">多样化场景AI生成展示</p>
+                            </div>
+                        </div>
+                        
+                        <div class="vertical-card group cursor-pointer" data-video-id="sora2-series-4">
+                            <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Sora2动态效果" 
+                                 class="transition-all duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-lg art-title mb-1">Sora2动态效果</h3>
+                                <p class="text-blue-300/80 text-xs font-light">动态镜头与转场效果</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- 产品展示系列视频 -->
+                <!-- 产品展示系列视频 - 竖屏 -->
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">产品展示系列视频</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="small-project-card group cursor-pointer" data-video-id="product-showcase-1">
-                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" 
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="vertical-card group cursor-pointer" data-video-id="product-showcase-1">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
                                  alt="科技产品展示" 
                                  class="transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
@@ -487,7 +572,7 @@
                             </div>
                             <div class="absolute bottom-4 left-4 right-4">
                                 <h3 class="text-lg art-title mb-1">科技产品展示</h3>
-                                <p class="text-blue-300/80 text-xs font-light">智能硬件产品功能演示视频</p>
+                                <p class="text-blue-300/80 text-xs font-light">智能硬件产品功能演示</p>
                                 <div class="flex items-center mt-2 space-x-2">
                                     <span class="subcategory-tag">科技产品</span>
                                     <span class="subcategory-tag">功能演示</span>
@@ -495,8 +580,8 @@
                             </div>
                         </div>
                         
-                        <div class="small-project-card group cursor-pointer" data-video-id="product-showcase-2">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" 
+                        <div class="vertical-card group cursor-pointer" data-video-id="product-showcase-2">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" 
                                  alt="消费品展示" 
                                  class="transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
@@ -507,7 +592,7 @@
                             </div>
                             <div class="absolute bottom-4 left-4 right-4">
                                 <h3 class="text-lg art-title mb-1">消费品展示</h3>
-                                <p class="text-blue-300/80 text-xs font-light">日用品与消费品视觉营销视频</p>
+                                <p class="text-blue-300/80 text-xs font-light">日用品与消费品视觉营销</p>
                                 <div class="flex items-center mt-2 space-x-2">
                                     <span class="subcategory-tag">消费品</span>
                                     <span class="subcategory-tag">视觉营销</span>
@@ -515,8 +600,8 @@
                             </div>
                         </div>
                         
-                        <div class="small-project-card group cursor-pointer" data-video-id="product-showcase-3">
-                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" 
+                        <div class="vertical-card group cursor-pointer" data-video-id="product-showcase-3">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
                                  alt="服务产品展示" 
                                  class="transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
@@ -527,73 +612,92 @@
                             </div>
                             <div class="absolute bottom-4 left-4 right-4">
                                 <h3 class="text-lg art-title mb-1">服务产品展示</h3>
-                                <p class="text-blue-300/80 text-xs font-light">数字化服务产品介绍与演示</p>
+                                <p class="text-blue-300/80 text-xs font-light">数字化服务产品介绍</p>
                                 <div class="flex items-center mt-2 space-x-2">
                                     <span class="subcategory-tag">数字化服务</span>
                                     <span class="subcategory-tag">产品介绍</span>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="vertical-card group cursor-pointer" data-video-id="product-showcase-4">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="产品细节展示" 
+                                 class="transition-all duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-lg art-title mb-1">产品细节展示</h3>
+                                <p class="text-blue-300/80 text-xs font-light">产品特写与细节呈现</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- 痛点可视化系列视频 -->
+                <!-- 痛点可视化系列视频 - 竖屏 -->
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">痛点可视化系列视频</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="project-card group cursor-pointer" data-video-id="pain-point-visualization">
-                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80" 
-                                 alt="痛点可视化" 
-                                 class="transition-all duration-700 group-hover:scale-105">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="vertical-card group cursor-pointer" data-video-id="pain-point-visualization">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="用户痛点可视化" 
+                                 class="transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
                             <div class="absolute inset-0 z-20 flex items-center justify-center">
-                                <button class="play-btn w-16 h-16 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
-                                    <div class="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
+                                <button class="play-btn w-10 h-10 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                                    <div class="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
                                 </button>
                             </div>
-                            <div class="absolute bottom-8 left-8">
-                                <h3 class="text-2xl art-title mb-2">用户痛点可视化</h3>
-                                <p class="text-blue-300/80 text-sm font-light">通过AI场景还原用户痛点，直观展示解决方案</p>
-                                <div class="flex items-center mt-4 space-x-4 text-xs tracking-widest">
-                                    <span class="px-3 py-1 border border-blue-500/30">场景还原</span>
-                                    <span class="px-3 py-1 border border-blue-500/30">痛点分析</span>
-                                    <span class="px-3 py-1 border border-blue-500/30">解决方案</span>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-lg art-title mb-1">用户痛点可视化</h3>
+                                <p class="text-blue-300/80 text-xs font-light">通过AI场景还原用户痛点</p>
+                                <div class="flex items-center mt-2 space-x-2">
+                                    <span class="subcategory-tag">场景还原</span>
+                                    <span class="subcategory-tag">痛点分析</span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 md:mt-0">
-                            <div class="small-project-card group cursor-pointer" data-video-id="pain-point-case1">
-                                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" 
-                                     alt="行业痛点案例1" 
-                                     class="transition-all duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
-                                <div class="absolute bottom-4 left-4 right-4">
-                                    <h3 class="text-lg art-title mb-1">行业痛点案例</h3>
-                                    <p class="text-blue-300/80 text-xs font-light">具体行业痛点场景可视化分析</p>
-                                </div>
+                        <div class="vertical-card group cursor-pointer" data-video-id="pain-point-case1">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="行业痛点案例1" 
+                                 class="transition-all duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-lg art-title mb-1">行业痛点案例</h3>
+                                <p class="text-blue-300/80 text-xs font-light">具体行业痛点场景可视化</p>
                             </div>
-                            
-                            <div class="small-project-card group cursor-pointer" data-video-id="pain-point-case2">
-                                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" 
-                                     alt="解决方案展示" 
-                                     class="transition-all duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
-                                <div class="absolute bottom-4 left-4 right-4">
-                                    <h3 class="text-lg art-title mb-1">解决方案展示</h3>
-                                    <p class="text-blue-300/80 text-xs font-light">针对痛点的AI解决方案演示</p>
-                                </div>
+                        </div>
+                        
+                        <div class="vertical-card group cursor-pointer" data-video-id="pain-point-case2">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="解决方案展示" 
+                                 class="transition-all duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-lg art-title mb-1">解决方案展示</h3>
+                                <p class="text-blue-300/80 text-xs font-light">针对痛点的AI解决方案</p>
+                            </div>
+                        </div>
+                        
+                        <div class="vertical-card group cursor-pointer" data-video-id="pain-point-case3">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="痛点对比展示" 
+                                 class="transition-all duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-lg art-title mb-1">痛点对比展示</h3>
+                                <p class="text-blue-300/80 text-xs font-light">问题与解决方案对比</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- 数字人系列视频 -->
+                <!-- 数字人系列视频 - 竖屏 -->
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">数字人系列视频</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="small-project-card group cursor-pointer" data-video-id="digital-human-1">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" 
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="vertical-card group cursor-pointer" data-video-id="digital-human-1">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
                                  alt="虚拟主播" 
                                  class="transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
@@ -612,8 +716,8 @@
                             </div>
                         </div>
                         
-                        <div class="small-project-card group cursor-pointer" data-video-id="digital-human-2">
-                            <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=800&q=80" 
+                        <div class="vertical-card group cursor-pointer" data-video-id="digital-human-2">
+                            <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=600&q=80" 
                                  alt="品牌代言人" 
                                  class="transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
@@ -624,7 +728,7 @@
                             </div>
                             <div class="absolute bottom-4 left-4 right-4">
                                 <h3 class="text-lg art-title mb-1">品牌代言人</h3>
-                                <p class="text-blue-300/80 text-xs font-light">企业品牌虚拟形象定制与内容创作</p>
+                                <p class="text-blue-300/80 text-xs font-light">企业品牌虚拟形象定制</p>
                                 <div class="flex items-center mt-2 space-x-2">
                                     <span class="subcategory-tag">品牌形象</span>
                                     <span class="subcategory-tag">虚拟代言</span>
@@ -632,8 +736,8 @@
                             </div>
                         </div>
                         
-                        <div class="small-project-card group cursor-pointer" data-video-id="digital-human-3">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" 
+                        <div class="vertical-card group cursor-pointer" data-video-id="digital-human-3">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
                                  alt="交互数字人" 
                                  class="transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
@@ -644,17 +748,28 @@
                             </div>
                             <div class="absolute bottom-4 left-4 right-4">
                                 <h3 class="text-lg art-title mb-1">交互数字人</h3>
-                                <p class="text-blue-300/80 text-xs font-light">可交互虚拟角色应用场景演示</p>
+                                <p class="text-blue-300/80 text-xs font-light">可交互虚拟角色应用场景</p>
                                 <div class="flex items-center mt-2 space-x-2">
                                     <span class="subcategory-tag">交互应用</span>
                                     <span class="subcategory-tag">场景演示</span>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="vertical-card group cursor-pointer" data-video-id="digital-human-4">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
+                                 alt="数字人多样化" 
+                                 class="transition-all duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-lg art-title mb-1">数字人多样化</h3>
+                                <p class="text-blue-300/80 text-xs font-light">多种风格数字人展示</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- AI成片系列视频 -->
+                <!-- AI成片系列视频 - 唯一保持16:9的成片 -->
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">AI成片系列视频</h3>
                     <div class="project-card group cursor-pointer" data-video-id="ai-complete-video">
@@ -875,7 +990,7 @@
         const closeModalBtn = document.getElementById('closeModal');
         const videoTitle = document.getElementById('videoTitle');
         
-        document.querySelectorAll('.project-card[data-video-id], .small-project-card[data-video-id]').forEach(card => {
+        document.querySelectorAll('.project-card[data-video-id], .small-project-card[data-video-id], .vertical-card[data-video-id]').forEach(card => {
             card.addEventListener('click', function(e) {
                 // 如果点击的是播放按钮，则打开模态框
                 if (e.target.closest('.play-btn') || !e.target.closest('.play-btn')) {
@@ -890,15 +1005,20 @@
                         'lets-shenzhen': "Let's SHENZHEN! - 解锁城市新玩法",
                         'sora2-series-1': 'Sora2创意叙事系列',
                         'sora2-series-2': 'Sora2商业应用',
+                        'sora2-series-3': 'Sora2场景生成',
+                        'sora2-series-4': 'Sora2动态效果',
                         'product-showcase-1': '科技产品展示视频',
                         'product-showcase-2': '消费品展示视频',
                         'product-showcase-3': '服务产品展示视频',
+                        'product-showcase-4': '产品细节展示',
                         'pain-point-visualization': '用户痛点可视化',
                         'pain-point-case1': '行业痛点案例',
                         'pain-point-case2': '解决方案展示',
+                        'pain-point-case3': '痛点对比展示',
                         'digital-human-1': '虚拟主播 - 数字人系列',
                         'digital-human-2': '品牌代言人 - 数字人系列',
                         'digital-human-3': '交互数字人 - 数字人系列',
+                        'digital-human-4': '数字人多样化',
                         'ai-complete-video': 'AI全流程成片'
                     };
                     

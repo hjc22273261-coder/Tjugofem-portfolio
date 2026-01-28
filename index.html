@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>何嘉诚作品集 | JiaChengHe Portfolio | AIGC & Visual Art</title>
+    <title>何嘉诚作品集 | AIGC & 视觉艺术</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -17,6 +17,7 @@
             --forest-green: #1a3c27;
             --star-white: #e6f1ff;
         }
+        
         body {
             background-color: var(--deep-blue);
             color: #f8fafc;
@@ -28,7 +29,10 @@
                 radial-gradient(circle at 80% 70%, rgba(56, 189, 248, 0.03) 0%, transparent 30%),
                 linear-gradient(180deg, rgba(10, 25, 47, 0.9) 0%, rgba(26, 60, 39, 0.4) 100%);
         }
-        .art-title { font-family: 'Playfair Display', serif; }
+        
+        .art-title { 
+            font-family: 'Playfair Display', serif; 
+        }
         
         /* 星空巨木森林背景层 */
         .forest-bg {
@@ -49,18 +53,23 @@
             z-index: -5;
             pointer-events: none;
         }
-
-        /* 增强电影质感颗粒感蒙版 */
+        
         .grain {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
             background: 
                 url('https://grainy-gradients.vercel.app/noise.svg'),
                 radial-gradient(circle at 20% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(0, 245, 255, 0.03) 0%, transparent 50%);
-            opacity: 0.06; pointer-events: none; z-index: -3;
+            opacity: 0.06; 
+            pointer-events: none; 
+            z-index: -3;
             animation: grainMove 8s steps(10) infinite;
         }
-
+        
         @keyframes grainMove {
             0%, 100% { transform: translate(0, 0); }
             10% { transform: translate(-5%, -5%); }
@@ -73,27 +82,38 @@
             80% { transform: translate(5%, 5%); }
             90% { transform: translate(10%, 10%); }
         }
-
-        /* 增强蓝色光晕动画 - 调整为蓝白色调 */
+        
+        /* 蓝色光晕动画 */
         .aura {
-            position: fixed; width: 60vw; height: 60vw;
+            position: fixed; 
+            width: 60vw; 
+            height: 60vw;
             background: 
                 radial-gradient(circle at center, rgba(230, 241, 255, 0.15) 0%, rgba(0,0,0,0) 70%),
                 radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.08) 0%, rgba(0,0,0,0) 50%);
-            border-radius: 50%; pointer-events: none; z-index: -2;
-            filter: blur(80px); animation: drift 25s infinite alternate ease-in-out;
+            border-radius: 50%; 
+            pointer-events: none; 
+            z-index: -2;
+            filter: blur(80px); 
+            animation: drift 25s infinite alternate ease-in-out;
             mix-blend-mode: screen;
         }
-
+        
         .aura-2 {
-            position: fixed; width: 40vw; height: 40vw;
+            position: fixed; 
+            width: 40vw; 
+            height: 40vw;
             background: radial-gradient(circle at center, rgba(96, 165, 250, 0.06) 0%, rgba(0,0,0,0) 60%);
-            border-radius: 50%; pointer-events: none; z-index: -2;
-            filter: blur(60px); animation: drift2 30s infinite alternate-reverse ease-in-out;
-            top: 20vh; left: 60vw;
+            border-radius: 50%; 
+            pointer-events: none; 
+            z-index: -2;
+            filter: blur(60px); 
+            animation: drift2 30s infinite alternate-reverse ease-in-out;
+            top: 20vh; 
+            left: 60vw;
             mix-blend-mode: screen;
         }
-
+        
         @keyframes drift {
             0% { transform: translate(-10%, -10%) scale(1); }
             25% { transform: translate(20%, 10%) scale(1.1); }
@@ -101,51 +121,32 @@
             75% { transform: translate(-5%, 15%) scale(1.05); }
             100% { transform: translate(15%, -5%) scale(1); }
         }
-
+        
         @keyframes drift2 {
             0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
             33% { transform: translate(15%, -10%) scale(1.2); opacity: 0.9; }
             66% { transform: translate(-10%, 15%) scale(0.8); opacity: 0.6; }
             100% { transform: translate(5%, 5%) scale(1); opacity: 0.7; }
         }
-
-        /* 动态星空网格背景 */
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(230, 241, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(230, 241, 255, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            background-position: center center;
-            z-index: -4;
-            opacity: 0.2;
-            animation: gridMove 40s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 60px 60px; }
-        }
-
-        /* 作品卡片悬停效果 - 主要横屏卡片 */
+        
+        /* 作品卡片样式 */
         .project-card {
-            position: relative; overflow: hidden;
-            aspect-ratio: 16 / 9; background: #0f172a;
+            position: relative; 
+            overflow: hidden;
+            aspect-ratio: 16 / 9; 
+            background: #0f172a;
             border: 1px solid rgba(255,255,255,0.05);
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        
         .project-card:hover {
             border-color: var(--electric-blue);
             transform: scale(1.01);
             box-shadow: 0 0 40px rgba(56, 189, 248, 0.2);
         }
         
-        /* 视频卡片专用样式 */
-        .video-card video {
+        /* GIF卡片专用样式 */
+        .gif-card .gif-player {
             position: absolute;
             top: 0;
             left: 0;
@@ -153,19 +154,9 @@
             height: 100%;
             object-fit: cover;
             z-index: 5;
-            display: none;
         }
         
-        .video-card.playing video {
-            display: block;
-        }
-        
-        .video-card.playing .cover-image {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        .video-card .cover-image {
+        .gif-card .cover-image {
             transition: opacity 0.5s ease;
             width: 100%;
             height: 100%;
@@ -174,7 +165,12 @@
             z-index: 2;
         }
         
-        .video-controls {
+        .gif-card.playing .cover-image {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .gif-controls {
             position: absolute;
             top: 0;
             left: 0;
@@ -187,7 +183,7 @@
             pointer-events: none;
         }
         
-        .play-control-btn, .replay-control-btn {
+        .play-gif-btn {
             pointer-events: auto;
             width: 60px;
             height: 60px;
@@ -205,31 +201,21 @@
             transform: scale(0.8);
         }
         
-        .video-card:hover .play-control-btn,
-        .video-card.playing .play-control-btn,
-        .video-card.ended .replay-control-btn {
+        .gif-card:hover .play-gif-btn {
             opacity: 1;
             transform: scale(1);
         }
         
-        .play-control-btn:hover, .replay-control-btn:hover {
+        .play-gif-btn:hover {
             background: rgba(56, 189, 248, 0.8);
             border-color: rgba(56, 189, 248, 1);
             transform: scale(1.1);
         }
         
-        .replay-control-btn {
+        .gif-card.playing .play-gif-btn {
             display: none;
         }
         
-        .video-card.ended .replay-control-btn {
-            display: flex;
-        }
-        
-        .video-card.ended .play-control-btn {
-            display: none;
-        }
-
         /* 加载动画 */
         .loading-screen {
             position: fixed;
@@ -275,7 +261,7 @@
             50% { transform: scaleX(1); }
             100% { transform: scaleX(0); transform-origin: right; }
         }
-
+        
         /* 滚动时导航栏变化 */
         nav.scrolled {
             background: rgba(10, 25, 47, 0.95);
@@ -283,11 +269,13 @@
             border-bottom: 1px solid rgba(56, 189, 248, 0.2);
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
         }
-
+        
         /* 竖屏卡片 - 9:16比例 */
         .vertical-card {
-            position: relative; overflow: hidden;
-            aspect-ratio: 9 / 16; background: #0f172a;
+            position: relative; 
+            overflow: hidden;
+            aspect-ratio: 9 / 16; 
+            background: #0f172a;
             border: 1px solid rgba(255,255,255,0.05);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -297,7 +285,7 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
         }
-
+        
         /* 时间线样式 */
         .timeline-dot {
             width: 12px;
@@ -318,7 +306,7 @@
             width: 1px;
             background: linear-gradient(to bottom, rgba(56, 189, 248, 0.3), rgba(56, 189, 248, 0.1));
         }
-
+        
         /* 移动端优化 */
         @media (max-width: 768px) {
             .project-card {
@@ -343,7 +331,7 @@
                 gap: 0.5rem;
             }
         }
-
+        
         /* 粒子效果 */
         .particles {
             position: fixed;
@@ -380,59 +368,16 @@
                 opacity: 0;
             }
         }
-
-        /* 星空闪烁效果 */
-        .star {
-            position: fixed;
-            background-color: rgba(230, 241, 255, 0.8);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: -3;
-            animation: twinkle 3s infinite alternate;
-        }
-        
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        /* 巨木纹理动画 */
-        .tree-texture {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(90deg, 
-                    transparent 0%, 
-                    rgba(26, 60, 39, 0.03) 20%, 
-                    transparent 40%, 
-                    rgba(26, 60, 39, 0.05) 60%, 
-                    transparent 80%, 
-                    rgba(26, 60, 39, 0.03) 100%);
-            z-index: -4;
-            pointer-events: none;
-            animation: treeMove 80s linear infinite;
-        }
-        
-        @keyframes treeMove {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(100px); }
-        }
     </style>
 </head>
 <body>
-
     <!-- 加载动画 -->
     <div id="loadingScreen" class="loading-screen">
         <div class="loading-text">何嘉诚作品集</div>
     </div>
 
-    <!-- 增强背景效果 - 蓝白色星空+巨木森林深处 -->
+    <!-- 增强背景效果 -->
     <div class="forest-bg"></div>
-    <div class="tree-texture"></div>
-    <div class="grid-bg"></div>
     <div class="grain"></div>
     <div class="aura"></div>
     <div class="aura-2"></div>
@@ -455,27 +400,6 @@
             </button>
         </div>
     </nav>
-
-    <!-- 移动端菜单 -->
-    <div id="mobileMenu" class="fixed top-0 right-0 w-64 h-full bg-[#0f172a] z-50 p-8 transform translate-x-full transition-transform duration-300 md:hidden">
-        <div class="flex justify-end mb-12">
-            <button id="closeMobileMenu" class="text-blue-300 text-xl">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="flex flex-col space-y-8">
-            <a href="#work" class="text-lg hover:text-blue-300 transition">作品</a>
-            <a href="#about" class="text-lg hover:text-blue-300 transition">关于</a>
-            <a href="#contact" class="text-lg hover:text-blue-300 transition">联系</a>
-            <div class="pt-8 border-t border-white/10">
-                <p class="text-sm text-slate-400 mb-4">联系我</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="hover:text-blue-300"><i class="fab fa-weixin"></i></a>
-                    <a href="#" class="hover:text-blue-300"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- 主视觉区域 -->
     <section class="relative h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
@@ -531,21 +455,17 @@
                 <span class="text-xs tracking-widest text-slate-400 uppercase">深圳报业集团作品 / 2024</span>
             </div>
             
-            <!-- 主要作品：泱泱中华 珠水悠悠 - 16:9横屏 -->
-            <div class="project-card video-card group" data-video-src="">
-                <!-- 视频播放器 -->
-                <video class="absolute inset-0 w-full h-full object-cover z-10" loop preload="metadata">
-                    <source src="" type="video/mp4">
-                    您的浏览器不支持 video 标签。
-                </video>
+            <!-- 主要作品：泱泱中华 珠水悠悠 - 16:9横屏 (GIF 01) -->
+            <div class="project-card gif-card group">
+                <!-- GIF播放器 -->
+                <img src="01.gif" alt="泱泱中华 珠水悠悠" class="gif-player" style="display:none;">
                 <!-- 封面图 -->
                 <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1600&q=80" 
                      alt="泱泱中华 珠水悠悠" 
                      class="cover-image transition-all duration-500 group-hover:scale-105">
                 <!-- 控制按钮 -->
-                <div class="video-controls">
-                    <button class="play-control-btn">▶</button>
-                    <button class="replay-control-btn">↻</button>
+                <div class="gif-controls">
+                    <button class="play-gif-btn">▶</button>
                 </div>
                 <!-- 信息层 -->
                 <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
@@ -562,17 +482,14 @@
             
             <!-- 其他深报作品网格展示 - 9:16竖屏 -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12">
-                <!-- 智慧停车 - 竖屏 -->
-                <div class="vertical-card video-card group" data-video-src="">
-                    <video class="absolute inset-0 w-full h-full object-cover z-10" loop preload="metadata">
-                        <source src="" type="video/mp4">
-                    </video>
+                <!-- 智慧停车 - 竖屏 (GIF 02) -->
+                <div class="vertical-card gif-card group">
+                    <img src="02.gif" alt="智慧停车" class="gif-player" style="display:none;">
                     <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
                          alt="智慧停车" 
                          class="cover-image transition-all duration-500 group-hover:scale-105">
-                    <div class="video-controls">
-                        <button class="play-control-btn">▶</button>
-                        <button class="replay-control-btn">↻</button>
+                    <div class="gif-controls">
+                        <button class="play-gif-btn">▶</button>
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
                     <div class="absolute bottom-4 left-4 right-4 z-4">
@@ -581,17 +498,14 @@
                     </div>
                 </div>
                 
-                <!-- 喀什胡杨节 - 竖屏 -->
-                <div class="vertical-card video-card group" data-video-src="">
-                    <video class="absolute inset-0 w-full h-full object-cover z-10" loop preload="metadata">
-                        <source src="" type="video/mp4">
-                    </video>
+                <!-- 喀什胡杨节 - 竖屏 (GIF 03) -->
+                <div class="vertical-card gif-card group">
+                    <img src="03.gif" alt="喀什胡杨节" class="gif-player" style="display:none;">
                     <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=600&q=80" 
                          alt="喀什胡杨节" 
                          class="cover-image transition-all duration-500 group-hover:scale-105">
-                    <div class="video-controls">
-                        <button class="play-control-btn">▶</button>
-                        <button class="replay-control-btn">↻</button>
+                    <div class="gif-controls">
+                        <button class="play-gif-btn">▶</button>
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
                     <div class="absolute bottom-4 left-4 right-4 z-4">
@@ -600,17 +514,14 @@
                     </div>
                 </div>
                 
-                <!-- 创意十二月毛绒生物 - 竖屏 -->
-                <div class="vertical-card video-card group" data-video-src="">
-                    <video class="absolute inset-0 w-full h-full object-cover z-10" loop preload="metadata">
-                        <source src="" type="video/mp4">
-                    </video>
+                <!-- 创意十二月毛绒生物 - 竖屏 (GIF 04) -->
+                <div class="vertical-card gif-card group">
+                    <img src="04.gif" alt="大批毛绒生物来深圳" class="gif-player" style="display:none;">
                     <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=600&q=80" 
                          alt="大批毛绒生物来深圳" 
                          class="cover-image transition-all duration-500 group-hover:scale-105">
-                    <div class="video-controls">
-                        <button class="play-control-btn">▶</button>
-                        <button class="replay-control-btn">↻</button>
+                    <div class="gif-controls">
+                        <button class="play-gif-btn">▶</button>
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
                     <div class="absolute bottom-4 left-4 right-4 z-4">
@@ -619,17 +530,14 @@
                     </div>
                 </div>
                 
-                <!-- Let's SHENZHEN! - 竖屏 -->
-                <div class="vertical-card video-card group" data-video-src="">
-                    <video class="absolute inset-0 w-full h-full object-cover z-10" loop preload="metadata">
-                        <source src="" type="video/mp4">
-                    </video>
+                <!-- Let's SHENZHEN! - 竖屏 (GIF 05) -->
+                <div class="vertical-card gif-card group">
+                    <img src="05.gif" alt="Let's SHENZHEN!" class="gif-player" style="display:none;">
                     <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" 
                          alt="Let's SHENZHEN!" 
                          class="cover-image transition-all duration-500 group-hover:scale-105">
-                    <div class="video-controls">
-                        <button class="play-control-btn">▶</button>
-                        <button class="replay-control-btn">↻</button>
+                    <div class="gif-controls">
+                        <button class="play-gif-btn">▶</button>
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
                     <div class="absolute bottom-4 left-4 right-4 z-4">
@@ -653,21 +561,63 @@
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">Sora2系列视频</h3>
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <!-- 示例卡片1 -->
-                        <div class="vertical-card video-card group" data-video-src="">
-                            <video class="absolute inset-0 w-full h-full object-cover z-10" loop preload="metadata">
-                                <source src="" type="video/mp4">
-                            </video>
+                        <!-- 示例卡片1 (GIF 06) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="06.gif" alt="Sora2系列示例" class="gif-player" style="display:none;">
                             <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
                                  alt="Sora2系列示例" 
                                  class="cover-image transition-all duration-500 group-hover:scale-105">
-                            <div class="video-controls">
-                                <button class="play-control-btn">▶</button>
-                                <button class="replay-control-btn">↻</button>
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
                             </div>
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
                             <div class="absolute bottom-4 left-4 right-4 z-4">
-                                <h3 class="text-lg art-title mb-1">Sora2系列作品</h3>
+                                <h3 class="text-lg art-title mb-1">Sora2</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片2 (GIF 07) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="07.gif" alt="Sora2系列示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Sora2系列示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">Sora2</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片3 (GIF 08) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="08.gif" alt="Sora2系列示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Sora2系列示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">Sora2</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片4 (GIF 09) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="09.gif" alt="Sora2系列示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Sora2系列示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">Sora2</h3>
                             </div>
                         </div>
                     </div>
@@ -677,21 +627,63 @@
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">产品展示系列视频</h3>
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <!-- 示例卡片1 -->
-                        <div class="vertical-card video-card group" data-video-src="">
-                            <video class="absolute inset-0 w-full h-full object-cover z-10" loop preload="metadata">
-                                <source src="" type="video/mp4">
-                            </video>
+                        <!-- 示例卡片1 (GIF 10) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="10.gif" alt="产品展示示例" class="gif-player" style="display:none;">
                             <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
                                  alt="产品展示示例" 
                                  class="cover-image transition-all duration-500 group-hover:scale-105">
-                            <div class="video-controls">
-                                <button class="play-control-btn">▶</button>
-                                <button class="replay-control-btn">↻</button>
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
                             </div>
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
                             <div class="absolute bottom-4 left-4 right-4 z-4">
-                                <h3 class="text-lg art-title mb-1">产品展示作品</h3>
+                                <h3 class="text-lg art-title mb-1">产品展示</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片2 (GIF 11) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="11.gif" alt="产品展示示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" 
+                                 alt="产品展示示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">产品展示</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片3 (GIF 12) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="12.gif" alt="产品展示示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="产品展示示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">产品展示</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片4 (GIF 13) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="13.gif" alt="产品展示示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="产品展示示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">产品展示</h3>
                             </div>
                         </div>
                     </div>
@@ -701,21 +693,63 @@
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">痛点可视化系列视频</h3>
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <!-- 示例卡片1 -->
-                        <div class="vertical-card video-card group" data-video-src="">
-                            <video class="absolute inset-0 w-full h-full object-cover z-10" loop preload="metadata">
-                                <source src="" type="video/mp4">
-                            </video>
+                        <!-- 示例卡片1 (GIF 14) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="14.gif" alt="痛点可视化示例" class="gif-player" style="display:none;">
                             <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
                                  alt="痛点可视化示例" 
                                  class="cover-image transition-all duration-500 group-hover:scale-105">
-                            <div class="video-controls">
-                                <button class="play-control-btn">▶</button>
-                                <button class="replay-control-btn">↻</button>
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
                             </div>
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
                             <div class="absolute bottom-4 left-4 right-4 z-4">
-                                <h3 class="text-lg art-title mb-1">痛点可视化作品</h3>
+                                <h3 class="text-lg art-title mb-1">痛点可视化</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片2 (GIF 15) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="15.gif" alt="痛点可视化示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="痛点可视化示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">痛点可视化</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片3 (GIF 16) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="16.gif" alt="痛点可视化示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="痛点可视化示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">痛点可视化</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片4 (GIF 17) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="17.gif" alt="痛点可视化示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="痛点可视化示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">痛点可视化</h3>
                             </div>
                         </div>
                     </div>
@@ -725,21 +759,63 @@
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">数字人系列视频</h3>
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <!-- 示例卡片1 -->
-                        <div class="vertical-card video-card group" data-video-src="">
-                            <video class="absolute inset-0 w-full h-full object-cover z-10" loop preload="metadata">
-                                <source src="" type="video/mp4">
-                            </video>
+                        <!-- 示例卡片1 (GIF 18) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="18.gif" alt="数字人口播示例" class="gif-player" style="display:none;">
                             <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
-                                 alt="数字人示例" 
+                                 alt="数字人口播示例" 
                                  class="cover-image transition-all duration-500 group-hover:scale-105">
-                            <div class="video-controls">
-                                <button class="play-control-btn">▶</button>
-                                <button class="replay-control-btn">↻</button>
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
                             </div>
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
                             <div class="absolute bottom-4 left-4 right-4 z-4">
-                                <h3 class="text-lg art-title mb-1">数字人作品</h3>
+                                <h3 class="text-lg art-title mb-1">数字人口播</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片2 (GIF 19) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="19.gif" alt="数字人口播示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=600&q=80" 
+                                 alt="数字人口播示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">数字人口播</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片3 (GIF 20) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="20.gif" alt="数字人口播示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
+                                 alt="数字人口播示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">数字人口播</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 示例卡片4 (GIF 21) -->
+                        <div class="vertical-card gif-card group">
+                            <img src="21.gif" alt="数字人口播示例" class="gif-player" style="display:none;">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
+                                 alt="数字人口播示例" 
+                                 class="cover-image transition-all duration-500 group-hover:scale-105">
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                            <div class="absolute bottom-4 left-4 right-4 z-4">
+                                <h3 class="text-lg art-title mb-1">数字人口播</h3>
                             </div>
                         </div>
                     </div>
@@ -749,21 +825,50 @@
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">AI成片系列视频</h3>
                     <div class="space-y-8">
-                        <!-- 第一个AI成片 - 16:9横屏 -->
-                        <div class="project-card video-card group" data-video-src="">
-                            <video class="absolute inset-0 w-full h-full object-cover z-10" loop preload="metadata">
-                                <source src="" type="video/mp4">
-                            </video>
+                        <!-- 第一个AI成片 - 16:9横屏 (GIF 22) -->
+                        <div class="project-card gif-card group">
+                            <img src="22.gif" alt="AI成片示例" class="gif-player" style="display:none;">
                             <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80" 
                                  alt="AI成片示例" 
                                  class="cover-image transition-all duration-500 group-hover:scale-105">
-                            <div class="video-controls">
-                                <button class="play-control-btn">▶</button>
-                                <button class="replay-control-btn">↻</button>
+                            <div class="gif-controls">
+                                <button class="play-gif-btn">▶</button>
                             </div>
                             <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
                             <div class="absolute bottom-8 left-8 z-4">
-                                <h3 class="text-2xl art-title mb-2">AI成片作品</h3>
+                                <h3 class="text-2xl art-title mb-2">AI成片</h3>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- 第二个AI成片 - 竖屏 (GIF 23) -->
+                            <div class="vertical-card gif-card group">
+                                <img src="23.gif" alt="AI成片示例" class="gif-player" style="display:none;">
+                                <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=600&q=80" 
+                                     alt="AI成片示例" 
+                                     class="cover-image transition-all duration-500 group-hover:scale-105">
+                                <div class="gif-controls">
+                                    <button class="play-gif-btn">▶</button>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                                <div class="absolute bottom-4 left-4 right-4 z-4">
+                                    <h3 class="text-lg art-title mb-1">AI成片</h3>
+                                </div>
+                            </div>
+                            
+                            <!-- 第三个AI成片 - 竖屏 (GIF 24) -->
+                            <div class="vertical-card gif-card group">
+                                <img src="24.gif" alt="AI成片示例" class="gif-player" style="display:none;">
+                                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
+                                     alt="AI成片示例" 
+                                     class="cover-image transition-all duration-500 group-hover:scale-105">
+                                <div class="gif-controls">
+                                    <button class="play-gif-btn">▶</button>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
+                                <div class="absolute bottom-4 left-4 right-4 z-4">
+                                    <h3 class="text-lg art-title mb-1">AI成片</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -842,7 +947,6 @@
         window.addEventListener('load', () => {
             const loadingScreen = document.getElementById('loadingScreen');
             
-            // 延迟隐藏加载屏幕以获得更好的效果
             setTimeout(() => {
                 gsap.to(loadingScreen, {
                     opacity: 0,
@@ -896,7 +1000,6 @@
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                // 随机位置
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
                 const size = Math.random() * 3 + 1;
@@ -914,114 +1017,49 @@
             }
         }
 
-        // 创建星星效果
-        function createStars() {
-            const starCount = 30;
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                const size = Math.random() * 3 + 1;
-                const duration = Math.random() * 4 + 2;
-                const delay = Math.random() * 5;
-                
-                star.style.left = `${left}%`;
-                star.style.top = `${top}%`;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.animationDuration = `${duration}s`;
-                star.style.animationDelay = `${delay}s`;
-                
-                document.body.appendChild(star);
-            }
-        }
-
-        // 视频播放控制逻辑
-        function initVideoPlayers() {
-            const videoCards = document.querySelectorAll('.video-card');
+        // GIF播放控制逻辑
+        function initGifPlayers() {
+            const gifCards = document.querySelectorAll('.gif-card');
             
-            videoCards.forEach(card => {
-                const video = card.querySelector('video');
-                const playBtn = card.querySelector('.play-control-btn');
-                const replayBtn = card.querySelector('.replay-control-btn');
-                const videoSrc = card.getAttribute('data-video-src');
+            gifCards.forEach(card => {
+                const gifPlayer = card.querySelector('.gif-player');
+                const coverImage = card.querySelector('.cover-image');
+                const playBtn = card.querySelector('.play-gif-btn');
                 
-                // 设置视频源
-                if (videoSrc && videoSrc.trim() !== '') {
-                    video.querySelector('source').src = videoSrc;
-                    video.load();
-                }
-                
-                // 卡片点击事件 - 播放/暂停
+                // 卡片点击事件 - 播放/停止GIF
                 card.addEventListener('click', function(e) {
                     // 如果点击的是控制按钮，不触发卡片点击事件
-                    if (e.target === playBtn || e.target === replayBtn || 
-                        e.target.closest('.play-control-btn') || 
-                        e.target.closest('.replay-control-btn')) {
+                    if (e.target === playBtn || e.target.closest('.play-gif-btn')) {
                         return;
                     }
                     
-                    if (video.paused || video.ended) {
-                        video.play();
-                        card.classList.add('playing');
-                        card.classList.remove('ended');
-                        playBtn.style.display = 'none';
-                    } else {
-                        video.pause();
+                    if (card.classList.contains('playing')) {
+                        // 停止播放
+                        gifPlayer.style.display = 'none';
+                        coverImage.style.display = 'block';
                         card.classList.remove('playing');
                         playBtn.style.display = 'flex';
-                        playBtn.innerHTML = '▶';
+                    } else {
+                        // 开始播放
+                        gifPlayer.style.display = 'block';
+                        coverImage.style.display = 'none';
+                        card.classList.add('playing');
+                        playBtn.style.display = 'none';
                     }
                 });
                 
                 // 播放按钮点击事件
                 playBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    video.play();
+                    gifPlayer.style.display = 'block';
+                    coverImage.style.display = 'none';
                     card.classList.add('playing');
-                    card.classList.remove('ended');
                     playBtn.style.display = 'none';
                 });
                 
-                // 重播按钮点击事件
-                replayBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    video.currentTime = 0;
-                    video.play();
-                    card.classList.add('playing');
-                    card.classList.remove('ended');
-                    replayBtn.style.display = 'none';
-                });
-                
-                // 视频播放事件
-                video.addEventListener('play', function() {
-                    card.classList.add('playing');
-                    card.classList.remove('ended');
-                    playBtn.style.display = 'none';
-                    replayBtn.style.display = 'none';
-                });
-                
-                // 视频暂停事件
-                video.addEventListener('pause', function() {
-                    if (!video.ended) {
-                        card.classList.remove('playing');
-                        playBtn.style.display = 'flex';
-                        playBtn.innerHTML = '▶';
-                    }
-                });
-                
-                // 视频结束事件
-                video.addEventListener('ended', function() {
-                    card.classList.remove('playing');
-                    card.classList.add('ended');
-                    replayBtn.style.display = 'flex';
-                });
-                
-                // 视频加载错误处理
-                video.addEventListener('error', function() {
-                    console.error('视频加载错误:', videoSrc);
+                // GIF加载错误处理
+                gifPlayer.addEventListener('error', function() {
+                    console.error('GIF加载错误:', gifPlayer.src);
                     card.classList.remove('playing');
                     playBtn.style.display = 'flex';
                     playBtn.innerHTML = '!';
@@ -1033,6 +1071,8 @@
         // 鼠标跟随效果
         document.addEventListener('mousemove', (e) => {
             const aura = document.querySelector('.aura');
+            if (!aura) return;
+            
             const x = (e.clientX / window.innerWidth) * 100;
             const y = (e.clientY / window.innerHeight) * 100;
             gsap.to(aura, {
@@ -1046,6 +1086,8 @@
         // 滚动时改变导航栏
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('mainNav');
+            if (!nav) return;
+            
             if (window.scrollY > 100) {
                 nav.classList.add('scrolled');
             } else {
@@ -1092,13 +1134,13 @@
         
         if (mobileMenuBtn) {
             mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.style.transform = 'translateX(0)';
+                if (mobileMenu) mobileMenu.style.transform = 'translateX(0)';
             });
         }
         
         if (closeMobileMenuBtn) {
             closeMobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.style.transform = 'translateX(100%)';
+                if (mobileMenu) mobileMenu.style.transform = 'translateX(100%)';
             });
         }
         
@@ -1112,7 +1154,9 @@
         }
 
         // 初始化GSAP ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
+        if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
+            gsap.registerPlugin(ScrollTrigger);
+        }
         
         // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1135,8 +1179,7 @@
         // 初始化所有功能
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
-            createStars();
-            initVideoPlayers();
+            initGifPlayers();
         });
     </script>
 </body>

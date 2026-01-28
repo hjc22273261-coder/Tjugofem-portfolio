@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tjugofem Portfolio | AIGC & Visual Art</title>
+    <title>何嘉诚作品集 | JiaChengHe Portfolio | AIGC & Visual Art</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -142,6 +142,22 @@
             letter-spacing: 0.05em;
         }
 
+        /* 技能标签样式 */
+        .skill-category {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .skill-category-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--electric-blue);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+        }
+
         /* 移动端优化 */
         @media (max-width: 768px) {
             .project-card {
@@ -168,7 +184,7 @@
 
     <!-- 加载动画 -->
     <div id="loadingScreen" class="loading-screen">
-        <div class="loading-text">TJUGOFEM</div>
+        <div class="loading-text">何嘉诚作品集</div>
     </div>
 
     <!-- 电影质感颗粒感蒙版 -->
@@ -177,11 +193,11 @@
 
     <!-- 导航栏 -->
     <nav id="mainNav" class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-40 bg-gradient-to-b from-black/50 to-transparent transition-all duration-300">
-        <div class="text-sm tracking-[0.3em] font-bold art-title uppercase italic text-blue-400">Tjugofem</div>
+        <div class="text-sm tracking-[0.3em] font-bold art-title uppercase italic text-blue-400">何嘉诚作品集</div>
         <div class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.2em] font-light">
-            <a href="#work" class="hover:text-blue-400 transition">Works</a>
-            <a href="#about" class="hover:text-blue-400 transition">About</a>
-            <a href="#contact" class="px-4 py-2 border border-white/20 hover:border-blue-400 transition">Contact</a>
+            <a href="#work" class="hover:text-blue-400 transition">作品</a>
+            <a href="#about" class="hover:text-blue-400 transition">关于</a>
+            <a href="#contact" class="px-4 py-2 border border-white/20 hover:border-blue-400 transition">联系</a>
         </div>
         <!-- 移动端菜单按钮 -->
         <div class="md:hidden">
@@ -199,11 +215,11 @@
             </button>
         </div>
         <div class="flex flex-col space-y-8">
-            <a href="#work" class="text-lg hover:text-blue-400 transition">Works</a>
-            <a href="#about" class="text-lg hover:text-blue-400 transition">About</a>
-            <a href="#contact" class="text-lg hover:text-blue-400 transition">Contact</a>
+            <a href="#work" class="text-lg hover:text-blue-400 transition">作品</a>
+            <a href="#about" class="text-lg hover:text-blue-400 transition">关于</a>
+            <a href="#contact" class="text-lg hover:text-blue-400 transition">联系</a>
             <div class="pt-8 border-t border-white/10">
-                <p class="text-sm text-slate-400 mb-4">Connect</p>
+                <p class="text-sm text-slate-400 mb-4">联系我</p>
                 <div class="flex space-x-4">
                     <a href="#" class="hover:text-blue-400"><i class="fab fa-weixin"></i></a>
                     <a href="#" class="hover:text-blue-400"><i class="fas fa-envelope"></i></a>
@@ -217,9 +233,10 @@
         <div class="z-10 text-center">
             <h2 class="text-blue-500 text-xs tracking-[0.6em] uppercase mb-6 opacity-60">AIGC & Visual Art Director</h2>
             <h1 class="art-title text-6xl md:text-9xl mb-8 leading-tight">
-                Tjugofem<span class="italic font-light">Portfolio</span><br>
+                何嘉诚<span class="italic font-light">作品集</span><br>
                 <span class="text-blue-400">AI</span> VISUAL.
             </h1>
+            <p class="text-slate-400 text-sm mb-4">JiaChengHe Portfolio | AIGC & Visual Art</p>
             <div class="w-20 h-[1px] bg-blue-500/50 mx-auto"></div>
             <p class="text-slate-400 text-sm mt-6 max-w-xl mx-auto">擅长多风格AI创意叙事，实时跟进内容生成方向商业化可行性，国内外平台使用人机协同</p>
         </div>
@@ -237,19 +254,19 @@
         <!-- 作品分类筛选 -->
         <div class="filter-buttons flex justify-center space-x-4 mb-12">
             <button class="filter-btn active px-4 py-2 text-xs tracking-widest border border-blue-500/30 hover:bg-blue-500/10 transition" data-filter="all">全部</button>
-            <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="media">报业试听作品</button>
+            <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="media">报业视听作品</button>
             <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="vtt">VTT商业化作品</button>
         </div>
         
-        <!-- 项目1：深报试听作品 -->
+        <!-- 项目1：深报视听作品 -->
         <div class="project-item space-y-6" data-category="media">
             <div class="flex justify-between items-end">
                 <span class="text-4xl art-title italic text-blue-900/40">01</span>
-                <span class="text-xs tracking-widest text-slate-500 uppercase">深圳报业集团 / 2024</span>
+                <span class="text-xs tracking-widest text-slate-500 uppercase">深圳报业集团 / 2025</span>
             </div>
             <div class="project-card group cursor-pointer" data-video-id="shenzhen-media">
                 <img src="https://images.unsplash.com/photo-1489599809516-9827b6d1cf13?auto=format&fit=crop&w=1600&q=80" 
-                     alt="深报试听作品" 
+                     alt="深报视听作品" 
                      class="transition-all duration-700 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
                 <div class="absolute inset-0 z-20 flex items-center justify-center">
@@ -258,7 +275,7 @@
                     </button>
                 </div>
                 <div class="absolute bottom-8 left-8">
-                    <h3 class="text-3xl art-title mb-2">深报试听作品集</h3>
+                    <h3 class="text-3xl art-title mb-2">深报视听作品集</h3>
                     <p class="text-blue-300/80 text-sm font-light">文旅、政务类宣传视频制作，结合深圳城市文化与政务宣传需求</p>
                     <div class="flex items-center mt-4 space-x-4 text-xs tracking-widest">
                         <span class="px-3 py-1 border border-blue-500/30">AI脚本创作</span>
@@ -273,7 +290,7 @@
         <div class="project-item space-y-6" data-category="vtt">
             <div class="flex justify-between items-end">
                 <span class="text-4xl art-title italic text-blue-900/40">02</span>
-                <span class="text-xs tracking-widest text-slate-500 uppercase">VTT商业化作品集 / 2024</span>
+                <span class="text-xs tracking-widest text-slate-500 uppercase">VTT商业化作品集 / 2027</span>
             </div>
             
             <!-- VTT子分类导航 -->
@@ -302,7 +319,7 @@
                             <p class="text-blue-300/80 text-xs font-light">AI生成产品功能演示与卖点突出</p>
                             <div class="flex items-center mt-2 space-x-2">
                                 <span class="subcategory-tag">产品展示</span>
-                                <span class="subcategory-tag">Gemini 3</span>
+                                <span class="subcategory-tag">AI生成</span>
                             </div>
                         </div>
                     </div>
@@ -322,7 +339,7 @@
                             <p class="text-blue-300/80 text-xs font-light">动态展示产品核心功能与使用场景</p>
                             <div class="flex items-center mt-2 space-x-2">
                                 <span class="subcategory-tag">产品展示</span>
-                                <span class="subcategory-tag">Runway</span>
+                                <span class="subcategory-tag">AI脚本</span>
                             </div>
                         </div>
                     </div>
@@ -347,7 +364,7 @@
                             <p class="text-blue-300/80 text-xs font-light">问题呈现与解决方案展示</p>
                             <div class="flex items-center mt-2 space-x-2">
                                 <span class="subcategory-tag">痛点可视化</span>
-                                <span class="subcategory-tag">Veo 3</span>
+                                <span class="subcategory-tag">分镜生成</span>
                             </div>
                         </div>
                     </div>
@@ -367,7 +384,7 @@
                             <p class="text-blue-300/80 text-xs font-light">真实场景下的问题模拟与解决</p>
                             <div class="flex items-center mt-2 space-x-2">
                                 <span class="subcategory-tag">痛点可视化</span>
-                                <span class="subcategory-tag">Higgsfield</span>
+                                <span class="subcategory-tag">AI生成</span>
                             </div>
                         </div>
                     </div>
@@ -390,10 +407,9 @@
                         <h3 class="text-3xl art-title mb-2">VTT商业成片</h3>
                         <p class="text-blue-300/80 text-sm font-light">结合AIGC技术的商业化视频创作，提升制作效率与创意表现</p>
                         <div class="flex items-center mt-4 space-x-4 text-xs tracking-widest">
-                            <span class="px-3 py-1 border border-blue-500/30">Sora2</span>
-                            <span class="px-3 py-1 border border-blue-500/30">ComfyUI</span>
-                            <span class="px-3 py-1 border border-blue-500/30">Vidu</span>
-                            <span class="px-3 py-1 border border-blue-500/30">MiniMax</span>
+                            <span class="px-3 py-1 border border-blue-500/30">AI脚本创作</span>
+                            <span class="px-3 py-1 border border-blue-500/30">分镜内容生成</span>
+                            <span class="px-3 py-1 border border-blue-500/30">Sora2成片</span>
                         </div>
                     </div>
                 </div>
@@ -403,7 +419,7 @@
 
     <!-- 关于/联系区域 -->
     <footer id="about" class="bg-black/20 border-t border-white/5 py-32 px-6 text-center">
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-4xl mx-auto">
             <p class="text-blue-500 text-xs tracking-[0.4em] uppercase mb-8">期待合作</p>
             <h2 id="contact" class="art-title text-4xl md:text-6xl mb-8 hover:text-blue-400 transition-colors cursor-pointer" onclick="window.location.href='mailto:he22273261@126.com'">he22273261@126.com</h2>
             <p class="text-slate-400 mb-12">微信: he_2469855154</p>
@@ -423,19 +439,40 @@
                 擅长多风格AI创意叙事，实时跟进内容生成方向商业化可行性，国内外平台使用人机协同。专注于AIGC影视广告与视觉艺术创作，结合电影美学与数字技术，打造独特的视觉叙事。
             </p>
             
-            <div class="mt-8 flex flex-wrap justify-center gap-3">
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">AI脚本创作</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">分镜内容生成</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Sora2成片</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">ComfyUI</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Gemini 3</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Veo 3</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Runway</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Higgsfield</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">PixVerse</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Grok</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Vidu</span>
-                <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">MiniMax</span>
+            <!-- 技能标签分类展示 -->
+            <div class="mt-12 mb-8">
+                <h3 class="text-xl art-title mb-6 text-blue-300">专业技能</h3>
+                
+                <!-- 创作流程技能 -->
+                <div class="skill-category mb-10">
+                    <div class="skill-category-title">创作流程</div>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="px-4 py-2 border border-blue-500/30 rounded-full text-sm text-blue-300 font-medium">AI脚本创作</span>
+                        <span class="px-4 py-2 border border-blue-500/30 rounded-full text-sm text-blue-300 font-medium">分镜内容生成</span>
+                        <span class="px-4 py-2 border border-blue-500/30 rounded-full text-sm text-blue-300 font-medium">Sora2成片</span>
+                        <span class="px-4 py-2 border border-blue-500/30 rounded-full text-sm text-blue-300 font-medium">AI视觉叙事</span>
+                        <span class="px-4 py-2 border border-blue-500/30 rounded-full text-sm text-blue-300 font-medium">多平台适配</span>
+                    </div>
+                </div>
+                
+                <!-- 工具技能 -->
+                <div class="skill-category">
+                    <div class="skill-category-title">技术工具</div>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Sora2</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">ComfyUI</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Gemini 3</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Veo 3</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Runway</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Higgsfield</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">PixVerse</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Grok</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Vidu</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">MiniMax</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Stable Diffusion</span>
+                        <span class="px-3 py-1 border border-blue-500/20 rounded-full text-xs text-blue-300">Midjourney</span>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -459,7 +496,7 @@
 
     <!-- 版权信息 -->
     <div class="text-center text-xs text-slate-600 pb-8">
-        &copy; 2024 Tjugofem Portfolio. All rights reserved.
+        &copy; 2024 何嘉诚作品集. All rights reserved.
     </div>
 
     <script>
@@ -612,7 +649,7 @@
                     
                     // 根据视频ID设置标题
                     const titles = {
-                        'shenzhen-media': '深报试听作品集',
+                        'shenzhen-media': '深报视听作品集',
                         'vtt-product-1': 'VTT产品展示视频',
                         'vtt-product-2': 'VTT产品功能可视化',
                         'vtt-painpoint-1': '用户痛点可视化',

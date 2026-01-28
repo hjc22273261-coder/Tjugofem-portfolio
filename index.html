@@ -145,7 +145,19 @@
             box-shadow: 0 0 40px rgba(56, 189, 248, 0.2);
         }
         
-        /* GIF卡片专用样式 */
+        /* 图片卡片样式 - 用于深报作品和AI成片作品 */
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* GIF卡片专用样式 - 用于VTT作品 */
         .gif-card .gif-player {
             position: absolute;
             top: 0;
@@ -401,6 +413,27 @@
         </div>
     </nav>
 
+    <!-- 移动端菜单 -->
+    <div id="mobileMenu" class="fixed top-0 right-0 w-64 h-full bg-[#0f172a] z-50 p-8 transform translate-x-full transition-transform duration-300 md:hidden">
+        <div class="flex justify-end mb-12">
+            <button id="closeMobileMenu" class="text-blue-300 text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-8">
+            <a href="#work" class="text-lg hover:text-blue-300 transition">作品</a>
+            <a href="#about" class="text-lg hover:text-blue-300 transition">关于</a>
+            <a href="#contact" class="text-lg hover:text-blue-300 transition">联系</a>
+            <div class="pt-8 border-t border-white/10">
+                <p class="text-sm text-slate-400 mb-4">联系我</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-blue-300"><i class="fab fa-weixin"></i></a>
+                    <a href="#" class="hover:text-blue-300"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 主视觉区域 -->
     <section class="relative h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
         <div class="z-10 text-center">
@@ -448,28 +481,22 @@
             </div>
         </div>
         
-        <!-- 深报视听作品集 -->
+        <!-- 深报视听作品集 - 已改为静态图片展示 -->
         <div class="project-item space-y-6" data-category="media">
             <div class="flex justify-between items-end">
                 <span class="text-4xl art-title italic text-blue-900/40">01</span>
                 <span class="text-xs tracking-widest text-slate-400 uppercase">深圳报业集团作品 / 2024</span>
             </div>
             
-            <!-- 主要作品：泱泱中华 珠水悠悠 - 16:9横屏 (GIF 01) -->
-            <div class="project-card gif-card group">
-                <!-- GIF播放器 -->
-                <img src="01.gif" alt="泱泱中华 珠水悠悠" class="gif-player" style="display:none;">
-                <!-- 封面图 -->
-                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1600&q=80" 
+            <!-- 主要作品：泱泱中华 珠水悠悠 - 16:9横屏 (01.png) -->
+            <div class="project-card image-card group">
+                <!-- 静态图片 -->
+                <img src="01.png" 
                      alt="泱泱中华 珠水悠悠" 
-                     class="cover-image transition-all duration-500 group-hover:scale-105">
-                <!-- 控制按钮 -->
-                <div class="gif-controls">
-                    <button class="play-gif-btn">▶</button>
-                </div>
+                     class="transition-all duration-700 group-hover:scale-105">
                 <!-- 信息层 -->
-                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
-                <div class="absolute bottom-8 left-8 z-4">
+                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8">
                     <h3 class="text-3xl art-title mb-2">泱泱中华 珠水悠悠</h3>
                     <p class="text-blue-300/80 text-sm font-light">大型文旅宣传片，主要负责AI分镜生成与场景构建</p>
                     <div class="flex items-center mt-4 space-x-4 text-xs tracking-widest">
@@ -482,65 +509,49 @@
             
             <!-- 其他深报作品网格展示 - 9:16竖屏 -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12">
-                <!-- 智慧停车 - 竖屏 (GIF 02) -->
-                <div class="vertical-card gif-card group">
-                    <img src="02.gif" alt="智慧停车" class="gif-player" style="display:none;">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" 
+                <!-- 智慧停车 - 竖屏 (02.png) -->
+                <div class="vertical-card image-card group">
+                    <img src="02.png" 
                          alt="智慧停车" 
-                         class="cover-image transition-all duration-500 group-hover:scale-105">
-                    <div class="gif-controls">
-                        <button class="play-gif-btn">▶</button>
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
-                    <div class="absolute bottom-4 left-4 right-4 z-4">
+                         class="transition-all duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
                         <h3 class="text-lg art-title mb-1">智慧停车</h3>
                         <p class="text-blue-300/80 text-xs font-light">政务类AI成片，智能化城市管理解决方案展示</p>
                     </div>
                 </div>
                 
-                <!-- 喀什胡杨节 - 竖屏 (GIF 03) -->
-                <div class="vertical-card gif-card group">
-                    <img src="03.gif" alt="喀什胡杨节" class="gif-player" style="display:none;">
-                    <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=600&q=80" 
+                <!-- 喀什胡杨节 - 竖屏 (03.png) -->
+                <div class="vertical-card image-card group">
+                    <img src="03.png" 
                          alt="喀什胡杨节" 
-                         class="cover-image transition-all duration-500 group-hover:scale-105">
-                    <div class="gif-controls">
-                        <button class="play-gif-btn">▶</button>
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
-                    <div class="absolute bottom-4 left-4 right-4 z-4">
+                         class="transition-all duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
                         <h3 class="text-lg art-title mb-1">喀什胡杨节</h3>
                         <p class="text-blue-300/80 text-xs font-light">城市旅游宣传片，展现新疆喀什独特自然风光</p>
                     </div>
                 </div>
                 
-                <!-- 创意十二月毛绒生物 - 竖屏 (GIF 04) -->
-                <div class="vertical-card gif-card group">
-                    <img src="04.gif" alt="大批毛绒生物来深圳" class="gif-player" style="display:none;">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=600&q=80" 
+                <!-- 创意十二月毛绒生物 - 竖屏 (04.png) -->
+                <div class="vertical-card image-card group">
+                    <img src="04.png" 
                          alt="大批毛绒生物来深圳" 
-                         class="cover-image transition-all duration-500 group-hover:scale-105">
-                    <div class="gif-controls">
-                        <button class="play-gif-btn">▶</button>
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
-                    <div class="absolute bottom-4 left-4 right-4 z-4">
+                         class="transition-all duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
                         <h3 class="text-lg art-title mb-1">大批毛绒生物来深圳</h3>
                         <p class="text-blue-300/80 text-xs font-light">"创意十二月"活动宣传，趣味性AI视觉内容创作</p>
                     </div>
                 </div>
                 
-                <!-- Let's SHENZHEN! - 竖屏 (GIF 05) -->
-                <div class="vertical-card gif-card group">
-                    <img src="05.gif" alt="Let's SHENZHEN!" class="gif-player" style="display:none;">
-                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" 
+                <!-- Let's SHENZHEN! - 竖屏 (05.png) -->
+                <div class="vertical-card image-card group">
+                    <img src="05.png" 
                          alt="Let's SHENZHEN!" 
-                         class="cover-image transition-all duration-500 group-hover:scale-105">
-                    <div class="gif-controls">
-                        <button class="play-gif-btn">▶</button>
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
-                    <div class="absolute bottom-4 left-4 right-4 z-4">
+                         class="transition-all duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
                         <h3 class="text-lg art-title mb-1">Let's SHENZHEN!</h3>
                         <p class="text-blue-300/80 text-xs font-light">城市地标宣传，解锁深圳新玩法与城市活力</p>
                     </div>
@@ -821,52 +832,40 @@
                     </div>
                 </div>
                 
-                <!-- AI成片系列视频 -->
+                <!-- AI成片系列视频 - 已改为静态图片展示 -->
                 <div class="vtt-series">
                     <h3 class="text-2xl art-title mb-6 text-blue-300">AI成片系列视频</h3>
                     <div class="space-y-8">
-                        <!-- 第一个AI成片 - 16:9横屏 (GIF 22) -->
-                        <div class="project-card gif-card group">
-                            <img src="22.gif" alt="AI成片示例" class="gif-player" style="display:none;">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80" 
-                                 alt="AI成片示例" 
-                                 class="cover-image transition-all duration-500 group-hover:scale-105">
-                            <div class="gif-controls">
-                                <button class="play-gif-btn">▶</button>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
-                            <div class="absolute bottom-8 left-8 z-4">
+                        <!-- 第一个AI成片 - 16:9横屏 (22.png) -->
+                        <div class="project-card image-card group">
+                            <img src="22.png" 
+                                 alt="AI成片" 
+                                 class="transition-all duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-8 left-8">
                                 <h3 class="text-2xl art-title mb-2">AI成片</h3>
                             </div>
                         </div>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- 第二个AI成片 - 竖屏 (GIF 23) -->
-                            <div class="vertical-card gif-card group">
-                                <img src="23.gif" alt="AI成片示例" class="gif-player" style="display:none;">
-                                <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=600&q=80" 
-                                     alt="AI成片示例" 
-                                     class="cover-image transition-all duration-500 group-hover:scale-105">
-                                <div class="gif-controls">
-                                    <button class="play-gif-btn">▶</button>
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
-                                <div class="absolute bottom-4 left-4 right-4 z-4">
+                            <!-- 第二个AI成片 - 竖屏 (23.png) -->
+                            <div class="vertical-card image-card group">
+                                <img src="23.png" 
+                                     alt="AI成片" 
+                                     class="transition-all duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 right-4">
                                     <h3 class="text-lg art-title mb-1">AI成片</h3>
                                 </div>
                             </div>
                             
-                            <!-- 第三个AI成片 - 竖屏 (GIF 24) -->
-                            <div class="vertical-card gif-card group">
-                                <img src="24.gif" alt="AI成片示例" class="gif-player" style="display:none;">
-                                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" 
-                                     alt="AI成片示例" 
-                                     class="cover-image transition-all duration-500 group-hover:scale-105">
-                                <div class="gif-controls">
-                                    <button class="play-gif-btn">▶</button>
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-3"></div>
-                                <div class="absolute bottom-4 left-4 right-4 z-4">
+                            <!-- 第三个AI成片 - 竖屏 (24.png) -->
+                            <div class="vertical-card image-card group">
+                                <img src="24.png" 
+                                     alt="AI成片" 
+                                     class="transition-all duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 right-4">
                                     <h3 class="text-lg art-title mb-1">AI成片</h3>
                                 </div>
                             </div>

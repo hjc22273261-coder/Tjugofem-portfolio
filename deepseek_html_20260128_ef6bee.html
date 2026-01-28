@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | TVC & Visual Art</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deep-blue: #020617;
+            --electric-blue: #38bdf8;
+        }
+        body {
+            background-color: var(--deep-blue);
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            cursor: crosshair;
+            overflow-x: hidden;
+        }
+        .art-title { font-family: 'Playfair Display', serif; }
+        
+        /* 电影质感颗粒感蒙版 */
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05; pointer-events: none; z-index: 50;
+        }
+
+        /* 蓝色光晕动画 */
+        .aura {
+            position: fixed; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%; pointer-events: none; z-index: -1;
+            filter: blur(60px); animation: drift 20s infinite alternate;
+        }
+
+        @keyframes drift {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* 作品卡片悬停效果 */
+        .project-card {
+            position: relative; overflow: hidden;
+            aspect-ratio: 21 / 9; background: #0f172a;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-card:hover {
+            border-color: var(--electric-blue);
+            transform: scale(1.01);
+        }
+        .project-card img {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.6; transition: 0.8s;
+        }
+        .project-card:hover img { opacity: 0.3; transform: scale(1.05); filter: grayscale(0); }
+
+        /* 加载动画 */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--deep-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+        
+        .loading-text {
+            font-size: 1.5rem;
+            letter-spacing: 0.5em;
+            color: var(--electric-blue);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            position: relative;
+        }
+        
+        .loading-text::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--electric-blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: loadingBar 2s ease-in-out infinite;
+        }
+        
+        @keyframes loadingBar {
+            0% { transform: scaleX(0); }
+            50% { transform: scaleX(1); }
+            100% { transform: scaleX(0); transform-origin: right; }
+        }
+
+        /* 滚动时导航栏变化 */
+        nav.scrolled {
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        /* 播放按钮 */
+        .play-btn {
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .project-card:hover .play-btn {
+            opacity: 1;
+        }
+
+        /* 视频模态框 */
+        .video-modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            .project-card {
+                aspect-ratio: 16/9 !important;
+            }
+            
+            h1 {
+                font-size: 3.5rem !important;
+            }
+            
+            .aura {
+                width: 100vw;
+                height: 100vw;
+            }
+            
+            .filter-buttons {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 加载动画 -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-text">LOADING</div>
+    </div>
+
+    <!-- 电影质感颗粒感蒙版 -->
+    <div class="grain"></div>
+    <div class="aura"></div>
+
+    <!-- 导航栏 -->
+    <nav id="mainNav" class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-40 bg-gradient-to-b from-black/50 to-transparent transition-all duration-300">
+        <div class="text-sm tracking-[0.3em] font-bold art-title uppercase italic text-blue-400">Cinematic Portfolio</div>
+        <div class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.2em] font-light">
+            <a href="#work" class="hover:text-blue-400 transition">Works</a>
+            <a href="#about" class="hover:text-blue-400 transition">About</a>
+            <a href="#contact" class="px-4 py-2 border border-white/20 hover:border-blue-400 transition">Contact</a>
+        </div>
+        <!-- 移动端菜单按钮 -->
+        <div class="md:hidden">
+            <button id="mobileMenuBtn" class="text-blue-400">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div id="mobileMenu" class="fixed top-0 right-0 w-64 h-full bg-[#0f172a] z-50 p-8 transform translate-x-full transition-transform duration-300 md:hidden">
+        <div class="flex justify-end mb-12">
+            <button id="closeMobileMenu" class="text-blue-400 text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-8">
+            <a href="#work" class="text-lg hover:text-blue-400 transition">Works</a>
+            <a href="#about" class="text-lg hover:text-blue-400 transition">About</a>
+            <a href="#contact" class="text-lg hover:text-blue-400 transition">Contact</a>
+            <div class="pt-8 border-t border-white/10">
+                <p class="text-sm text-slate-400 mb-4">Connect</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-behance"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-vimeo-v"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主视觉区域 -->
+    <section class="relative h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
+        <div class="z-10 text-center">
+            <h2 class="text-blue-500 text-xs tracking-[0.6em] uppercase mb-6 opacity-60">Visual Director & TVC Artist</h2>
+            <h1 class="art-title text-6xl md:text-9xl mb-8 leading-tight">
+                光影<span class="italic font-light">叙事</span><br>
+                <span class="text-blue-400">BLUE</span> VIBES.
+            </h1>
+            <div class="w-20 h-[1px] bg-blue-500/50 mx-auto"></div>
+        </div>
+        <div class="absolute bottom-10 left-10 text-[10rem] font-bold opacity-[0.02] select-none pointer-events-none art-title hidden md:block">CREATIVE</div>
+        <!-- 滚动指示器 -->
+        <div class="absolute bottom-8 right-8 animate-bounce">
+            <div class="w-6 h-10 border-2 border-blue-400/50 rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-blue-400/70 rounded-full mt-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品区域 -->
+    <main id="work" class="max-w-7xl mx-auto px-6 py-32 space-y-32">
+        <!-- 作品分类筛选 -->
+        <div class="filter-buttons flex justify-center space-x-4 mb-12">
+            <button class="filter-btn active px-4 py-2 text-xs tracking-widest border border-blue-500/30 hover:bg-blue-500/10 transition" data-filter="all">All</button>
+            <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="tvc">TVC</button>
+            <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="visual">Visual Art</button>
+            <button class="filter-btn px-4 py-2 text-xs tracking-widest border border-white/10 hover:border-blue-500/30 transition" data-filter="experimental">Experimental</button>
+        </div>
+        
+        <!-- 项目1：TVC -->
+        <div class="project-item space-y-6" data-category="tvc">
+            <div class="flex justify-between items-end">
+                <span class="text-4xl art-title italic text-blue-900/40">01</span>
+                <span class="text-xs tracking-widest text-slate-500 uppercase">Commercial Film / 2026</span>
+            </div>
+            <div class="project-card group cursor-pointer" data-video-id="future-horizon">
+                <img src="https://images.unsplash.com/photo-1489599809516-9827b6d1cf13?auto=format&fit=crop&w=1600&q=80" 
+                     alt="Future Horizon TVC" 
+                     class="transition-all duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 z-20 flex items-center justify-center">
+                    <button class="play-btn w-16 h-16 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                        <div class="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
+                    </button>
+                </div>
+                <div class="absolute bottom-8 left-8">
+                    <h3 class="text-3xl art-title mb-2">未来之境 / Future Horizon</h3>
+                    <p class="text-blue-300/80 text-sm font-light">为某品牌拍摄的年度视觉大片，探索深蓝美学</p>
+                    <div class="flex items-center mt-4 space-x-4 text-xs tracking-widest">
+                        <span class="px-3 py-1 border border-blue-500/30">4K</span>
+                        <span class="px-3 py-1 border border-blue-500/30">60fps</span>
+                        <span class="px-3 py-1 border border-blue-500/30">Dolby Atmos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目2和3：视觉艺术 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- 项目2 -->
+            <div class="project-item space-y-6" data-category="visual">
+                <span class="text-4xl art-title italic text-blue-900/40">02</span>
+                <div class="project-card !aspect-square group cursor-pointer" data-video-id="light-experiment">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80" 
+                         alt="光影实验 1.0" 
+                         class="transition-all duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute inset-0 z-20 flex items-center justify-center">
+                        <button class="play-btn w-12 h-12 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                            <div class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+                        </button>
+                    </div>
+                    <div class="absolute bottom-6 left-6">
+                        <h3 class="text-xl art-title mb-1">光影实验 1.0</h3>
+                        <p class="text-blue-300/80 text-xs font-light">动态光效与粒子系统</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目3 -->
+            <div class="project-item space-y-6 md:mt-24" data-category="experimental">
+                <span class="text-4xl art-title italic text-blue-900/40">03</span>
+                <div class="project-card !aspect-square group cursor-pointer" data-video-id="textures">
+                    <img src="https://images.unsplash.com/photo-1550686041-366ad85a1355?auto=format&fit=crop&w=800&q=80" 
+                         alt="质感碎片 / Textures" 
+                         class="transition-all duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute inset-0 z-20 flex items-center justify-center">
+                        <button class="play-btn w-12 h-12 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                            <div class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+                        </button>
+                    </div>
+                    <div class="absolute bottom-6 left-6">
+                        <h3 class="text-xl art-title mb-1">质感碎片 / Textures</h3>
+                        <p class="text-blue-300/80 text-xs font-light">材料研究与表面处理</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 项目4：TVC -->
+        <div class="project-item space-y-6" data-category="tvc">
+            <div class="flex justify-between items-end">
+                <span class="text-4xl art-title italic text-blue-900/40">04</span>
+                <span class="text-xs tracking-widest text-slate-500 uppercase">Automotive Film / 2025</span>
+            </div>
+            <div class="project-card group cursor-pointer" data-video-id="velocity">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1600&q=80" 
+                     alt="Velocity - Automotive Film" 
+                     class="transition-all duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 z-20 flex items-center justify-center">
+                    <button class="play-btn w-16 h-16 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 flex items-center justify-center hover:bg-blue-500/30 transition-all group-hover:scale-110">
+                        <div class="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
+                    </button>
+                </div>
+                <div class="absolute bottom-8 left-8">
+                    <h3 class="text-3xl art-title mb-2">速度与光 / Velocity</h3>
+                    <p class="text-blue-300/80 text-sm font-light">汽车品牌视觉广告，动态追踪摄影</p>
+                    <div class="flex items-center mt-4 space-x-4 text-xs tracking-widest">
+                        <span class="px-3 py-1 border border-blue-500/30">6K</span>
+                        <span class="px-3 py-1 border border-blue-500/30">120fps</span>
+                        <span class="px-3 py-1 border border-blue-500/30">Drone Shot</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 关于/联系区域 -->
+    <footer id="about" class="bg-black/20 border-t border-white/5 py-32 px-6 text-center">
+        <div class="max-w-3xl mx-auto">
+            <p class="text-blue-500 text-xs tracking-[0.4em] uppercase mb-8">Ready to collaborate?</p>
+            <h2 id="contact" class="art-title text-4xl md:text-6xl mb-16 hover:text-blue-400 transition-colors cursor-pointer" onclick="window.location.href='mailto:hello@yourname.com'">hello@yourname.com</h2>
+            <div class="flex justify-center space-x-8 text-[10px] tracking-[0.2em] text-slate-500 uppercase mb-12">
+                <a href="#" class="hover:text-white transition flex items-center space-x-1">
+                    <i class="fab fa-instagram text-xs"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="#" class="hover:text-white transition flex items-center space-x-1">
+                    <i class="fab fa-behance text-xs"></i>
+                    <span>Behance</span>
+                </a>
+                <a href="#" class="hover:text-white transition flex items-center space-x-1">
+                    <i class="fab fa-vimeo-v text-xs"></i>
+                    <span>Vimeo</span>
+                </a>
+            </div>
+            <p class="text-slate-500 text-sm max-w-md mx-auto mt-12">
+                专注于影视广告与视觉艺术创作，结合电影美学与数字技术，打造独特的视觉叙事。
+            </p>
+        </div>
+    </footer>
+
+    <!-- 视频模态框 -->
+    <div id="videoModal" class="video-modal fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4">
+        <div class="relative w-full max-w-6xl aspect-video">
+            <button id="closeModal" class="absolute -top-12 right-0 text-white/60 hover:text-white text-xl transition">
+                <i class="fas fa-times"></i> Close
+            </button>
+            <div class="w-full h-full bg-gray-900 flex items-center justify-center">
+                <div class="text-center p-8">
+                    <i class="fas fa-play-circle text-6xl text-blue-400 mb-4"></i>
+                    <h3 class="text-2xl art-title mb-2" id="videoTitle">Video Preview</h3>
+                    <p class="text-slate-400 mb-6">在实际项目中，这里将嵌入视频播放器</p>
+                    <p class="text-sm text-slate-500">您可以选择使用 YouTube、Vimeo 或自托管视频</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 版权信息 -->
+    <div class="text-center text-xs text-slate-600 pb-8">
+        &copy; 2024 Cinematic Portfolio. All rights reserved.
+    </div>
+
+    <script>
+        // 页面加载动画
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            
+            // 延迟隐藏加载屏幕以获得更好的效果
+            setTimeout(() => {
+                gsap.to(loadingScreen, {
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        loadingScreen.style.display = 'none';
+                        
+                        // 页面内容入场动画
+                        gsap.from("h1", { 
+                            duration: 2, 
+                            y: 50, 
+                            opacity: 0, 
+                            ease: "power4.out" 
+                        });
+                        
+                        gsap.from("h2", { 
+                            duration: 1.5, 
+                            y: 30, 
+                            opacity: 0, 
+                            delay: 0.3,
+                            ease: "power3.out" 
+                        });
+                        
+                        // 项目卡片滚动动画
+                        gsap.utils.toArray('.project-item').forEach((item, i) => {
+                            gsap.from(item, {
+                                scrollTrigger: {
+                                    trigger: item,
+                                    start: "top 80%",
+                                    toggleActions: "play none none reverse"
+                                },
+                                y: 100,
+                                opacity: 0,
+                                duration: 1.2,
+                                delay: i * 0.2,
+                                ease: "power3.out"
+                            });
+                        });
+                    }
+                });
+            }, 1000);
+        });
+
+        // 鼠标跟随效果
+        document.addEventListener('mousemove', (e) => {
+            const aura = document.querySelector('.aura');
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            gsap.to(aura, {
+                x: `${x - 50}vw`,
+                y: `${y - 50}vh`,
+                duration: 2,
+                ease: "power2.out"
+            });
+        });
+
+        // 滚动时改变导航栏
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // 作品筛选功能
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 更新激活状态
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active', 'border-blue-500/30'));
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('border-white/10'));
+                this.classList.add('active', 'border-blue-500/30');
+                this.classList.remove('border-white/10');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                // 筛选项目
+                document.querySelectorAll('.project-item').forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        gsap.to(item, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.5,
+                            display: 'block'
+                        });
+                    } else {
+                        gsap.to(item, {
+                            opacity: 0,
+                            scale: 0.8,
+                            duration: 0.5,
+                            display: 'none'
+                        });
+                    }
+                });
+            });
+        });
+
+        // 视频模态框控制
+        const videoModal = document.getElementById('videoModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const videoTitle = document.getElementById('videoTitle');
+        
+        document.querySelectorAll('.project-card[data-video-id]').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // 如果点击的是播放按钮，则打开模态框
+                if (e.target.closest('.play-btn') || !e.target.closest('.play-btn')) {
+                    const videoId = this.getAttribute('data-video-id');
+                    
+                    // 根据视频ID设置标题
+                    const titles = {
+                        'future-horizon': '未来之境 / Future Horizon',
+                        'light-experiment': '光影实验 1.0',
+                        'textures': '质感碎片 / Textures',
+                        'velocity': '速度与光 / Velocity'
+                    };
+                    
+                    videoTitle.textContent = titles[videoId] || 'Video Preview';
+                    videoModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        closeModalBtn.addEventListener('click', () => {
+            videoModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // 移动端菜单控制
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.style.transform = 'translateX(0)';
+        });
+        
+        closeMobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.style.transform = 'translateX(100%)';
+        });
+        
+        // 点击菜单链接后关闭菜单
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.style.transform = 'translateX(100%)';
+            });
+        });
+
+        // 初始化GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
